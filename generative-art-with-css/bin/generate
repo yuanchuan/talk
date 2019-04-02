@@ -4,7 +4,7 @@ const fs = require('fs');
 const path = require('path');
 
 const input = process.argv[2];
-const output = process.argv[3];
+const target = process.argv[3];
 
 if (!input) {
   console.log('No input.');
@@ -13,8 +13,8 @@ if (!input) {
 
 const result = build(input);
 
-if (output) {
-  fs.writeFileSync(output, result);
+if (target) {
+  fs.writeFileSync(target, result);
 } else {
   console.log(result);
 }
