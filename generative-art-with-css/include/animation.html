@@ -1,0 +1,205 @@
+<slide>
+  <content>
+    <p>
+      Animation
+    </p>
+  </content>
+</slide>
+
+<style>
+  & [as-bg] {
+    position: static;
+  }
+</style>
+
+<slide>
+  <content style="--bg-color: #000">
+    <css-doodle as-bg>
+      :doodle {
+        @grid: 50x1 / 50vmin;
+        perspective: 23vmin;
+      }
+
+      background: @multi(@r(200, 240), (
+        radial-gradient(
+          @p(#00b8a9, #f8f3d4, #f6416c, #ffde7d) 15%,
+          transparent 50%
+        ) @r(100%) @r(100%) / @r(1%, 3%, .1) @lr() no-repeat
+      ));
+
+      @size: 80%;
+      @place-cell: center;
+
+      border-radius: 50%;
+      transform-style: preserve-3d;
+      animation: scale-up 20s linear infinite;
+      animation-delay: calc(@i() * -.4s);
+
+      @keyframes scale-up {
+        0% {
+          opacity: 0;
+          transform: translate3d(0, 0, 0) rotate(0);
+        }
+        10% {
+          opacity: 1;
+        }
+        95% {
+          transform:
+            translate3d(0, 0, @r(50vmin, 55vmin))
+            rotate(@r(-360deg, 360deg));
+        }
+        100% {
+          opacity: 0;
+          transform: translate3d(0, 0, 1vmin);
+        }
+      }
+    </css-doodle>
+   </content>
+</slide>
+
+
+
+<style>
+  & [long] .code-sample {
+    font-size: 1.5vw;
+  }
+  & css-doodle {
+    --lines: (
+      :doodle {
+        @grid: 1x15 / 100vmin;
+        background: #000;
+      }
+
+      position: absolute;
+      @size: 100%;
+
+      background: @m(100, (
+        radial-gradient(#fff 50%, transparent 0)
+        @r(0, 100%) @r(0, 100%) / 1px @r(100px)
+        no-repeat
+      ));
+
+      animation: f @r(5s, 10s) linear infinite;
+      animation-delay: -@r(10s);
+
+      @keyframes f {
+        from {
+          transform: translateY(-100%);
+        }
+        to {
+          transform: translateY(100%);
+        }
+      }
+    );
+  }
+</style>
+
+<slide>
+  <content>
+    <preview long>
+      <result>
+      <css-doodle click-to-update></css-doodle>
+      </result>
+      <textarea code live>
+        :doodle {
+          @grid: 1x15 / 100vmin;
+          background: #000;
+        }
+
+        position: absolute;
+        @size: 100%;
+
+        background: @m(100, (
+          linear-gradient(
+            #fff 50%, transparent 0
+          )
+          @r(0, 100%) @r(0, 100%) /
+          1px @r(100px)
+          no-repeat
+        ));
+
+        will-change: transform;
+        animation: f @r(5s, 10s)
+          linear -@r(10s) infinite;
+
+        @keyframes f {
+          from {
+            transform: translateY(-100%);
+          }
+          to {
+            transform: translateY(100%);
+          }
+        }
+      </textarea>
+    </preview>
+  </content>
+</slide>
+
+<slide>
+  <content>
+    <preview>
+      <result>
+        <css-doodle click-to-update use="var(--lines)"></css-doodle>
+      </result>
+      <textarea code live>
+        /* with SVG filters */
+
+        :container {
+          filter: @svg-filter(<svg>
+            <filter>
+              <feTurbulence
+                type="fractalNoise"
+                seed="442"
+                baseFrequency=".002"
+                numOctaves="1" />
+              <feDisplacementMap
+                in="SourceGraphic"
+                scale="200"
+              />
+            </filter>
+          </svg>);
+        }
+      </textarea>
+    </preview>
+  </content>
+</slide>
+
+<slide>
+  <content>
+    <preview long>
+      <result>
+      <css-doodle click-to-update use="var(--lines)"></css-doodle>
+      </result>
+      <textarea code live>
+        /* with SVG filters */
+
+        :doodle {
+          background: linear-gradient(
+            rebeccapurple, cyan
+          );
+        }
+
+        :container {
+          filter: @svg-filter(<svg>
+            <filter>
+              <feGaussianBlur
+                in="SourceGraphic"
+                stdDeviation="5 100"
+                result="blur"
+              />
+            </filter>
+          </svg>);
+        }
+
+        background: @m(100, (
+          radial-gradient(
+            #fff 50%, transparent 0
+          )
+          @r(0, 100%) @r(0, 100%) /
+          @r(50px) @r(100px)
+          no-repeat
+        ));
+      </textarea>
+    </preview>
+  </content>
+</slide>

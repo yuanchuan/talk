@@ -1,0 +1,52 @@
+<slide>
+  <ul focus>
+    <li>
+      <content data-title="box-shadow" en>
+        <preview>
+          <result>
+            <css-doodle click-to-update>
+              :doodle {
+                @grid: 2x1 / 30vmin 60vmin;
+                gap: 2vmin;
+              }
+              border-radius: 50%;
+              box-shadow: @pn(
+                inset 1em -1em #333,
+                inset -1em 2em #333
+              );
+            </css-doodle>
+          </result>
+          <textarea code>
+            border-radius: 50%;
+
+            box-shadow:
+              inset 1em -1em #333;
+          </textarea>
+        </preview>
+      </content>
+    </li>
+
+    <li>
+      <content data-title="box-shadow" en>
+        <css-doodle click-to-update auto-update>
+          :doodle {
+            @grid: 9x14 / 100vmin 70vmin;
+          }
+          border-radius:
+            @r(100%) @r(100%) @r(100%) @r(100%) /
+            @r(100%) @r(100%) @r(100%) @r(100%);
+          @size: @r(5%, 100%) @r(5%, 100%);
+          box-shadow:
+            inset @r(-20px, 20px) @r(-20px, 20px) 0 #000;
+
+          @random(.1) {
+            box-shadow:
+              inset @r(-20px, 20px) @r(-20px, 20px) 0
+              @p(#51eaea, #ff9d76, #fb3569)
+          }
+          transition: all @r(1000ms) ease;
+        </css-doodle>
+      </content>
+    </li>
+  </ul>
+</slide>

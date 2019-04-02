@@ -1,0 +1,180 @@
+<style>
+  & {
+    background:
+      linear-gradient(to left, #000 50%, transparent 0) 0 / 1vmin 1px repeat-x,
+      linear-gradient(to bottom, #000 50%, transparent 0) 50% / 1px 1vmin repeat-y;
+    background-color: #fff;
+  }
+  & [focus] {
+    position: absolute;
+  }
+  & [focus] css-doodle {
+    margin: auto;
+  }
+  & polygon {
+    width: 80vmin;
+    height: 80vmin;
+    margin: auto;
+    display: block;
+    --h: 1;
+    background: hsla(
+      calc(var(--h) * 10), 80%, 80%, .5
+    );
+    clip-path: var(--polygon);
+  }
+  & polygon:after {
+    content: 'n = 'attr(points);
+    position: absolute;
+    font-size: 8vmin;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    color: #000;
+  }
+  & [code-block] {
+    background: #272A36;
+    width: 100vw;
+    height: 100vh;
+  }
+  & [code-block] .code-sample {
+    max-height: 100vh;
+  }
+  & .code-sample {
+    font-size: 2.3vw;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1.3;
+  }
+  & [heart] p {
+    font-size: 3vmin;
+    position: fixed;
+    right: 5vmin;
+    bottom: 5vmin;
+    white-space: nowrap;
+    text-align: left;
+  }
+  & [heart] p i {
+    margin-left: 4px;
+  }
+</style>
+
+
+<slide>
+  <content>
+    <ul focus>
+      <li>
+        <css-doodle>
+          :doodle {
+            @grid: 4x1 / 80vmin;
+            background: hsla(20, 0%, 80%, .2);
+          }
+          @place-cell: center;
+          @size: 100%;
+          font-size: 6vmin;
+          @nth(1) {
+            :after {
+              content: 'θ';
+              transform: translate(7vmin, -50%);
+            }
+          }
+          @nth(2) {
+            transform: translate(calc(50% + 3vmin), -3vmin);
+            :after {
+              content: 'R';
+            }
+          }
+          @nth(3) {
+            @size: 100% 1px;
+            transform-origin: 0 0;
+            transform: translateX(50%) rotate(-45deg);
+            background:
+              linear-gradient(to right, #000 50%, transparent 0)
+              0 / 1vmin 1px
+              repeat-x;
+          }
+          @nth(4) {
+            @size: 30%;
+            border: 1px dashed red;
+            border-left-color: transparent;
+            border-bottom-color: transparent;
+            transform: translate(50%, -50%);
+            :after {
+              content: 'x, y';
+              position: absolute;
+              top: 0;
+              right: 0;
+              transform: translate(120%, -50%);
+            }
+          }
+        </css-doodle>
+      </li>
+
+      <li code-block>
+        <textarea code="javascript">
+          function polygon(n = 3) {
+            let deg = 2 * Math.PI / n;
+            let points = [];
+            for (let i = 0; i < n; ++i) {
+              let theta = deg * i;
+              let x = 50 * Math.cos(theta) + 50 + '%';
+              let y = 50 * Math.sin(theta) + 50 + '%';
+              points.push(x + ' ' + y);
+            }
+            return `polygon(${ points.join(',') })`;
+          }
+        </textarea>
+      </li>
+
+      <li><polygon points="3"></polygon></li>
+      <li><polygon points="4"></polygon></li>
+      <li><polygon points="5"></polygon></li>
+      <li><polygon points="6"></polygon></li>
+      <li><polygon points="7"></polygon></li>
+      <li><polygon points="8"></polygon></li>
+      <li><polygon points="9"></polygon></li>
+      <li><polygon points="10"></polygon></li>
+      <li><polygon points="15"></polygon></li>
+      <li><polygon points="160"></polygon></li>
+      <li heart>
+        <css-doodle>
+          :doodle {
+            @grid: 2x1 / 80vmin;
+            @shape: heart;
+            background: hsla(
+              1800, 80%, 80%, .5
+            );
+          }
+          @size: 100% 1em;
+        </css-doodle>
+        <p>
+          x = 16 sin<sup>3</sup><i>t</i></br>
+          y = 13 cos<i>t</i> - 5 cos<i>2t</i> - 2 cos<i>3t</i> - cos<i>4t</i>
+        </p>
+      </li>
+    </ul>
+  </content>
+  <script>
+  (function() {
+    function polygon(n = 3) {
+      let theta = 2 * Math.PI / n;
+      let points = [];
+      for (let i = 0; i < n; ++i) {
+        let deg = theta * i;
+        let x = 50 * Math.cos(deg) + 50 + '%';
+        let y = 50 * Math.sin(deg) + 50 + '%';
+        points.push(x + ' ' + y);
+      }
+      return `polygon(${ points.join(',') })`;
+    }
+
+    let polygons = document.querySelectorAll('& polygon');
+    Array.from(polygons).forEach(p => {
+      let points = parseInt(p.getAttribute('points')) || 3;
+      p.style.setProperty('--polygon', polygon(points));
+      p.style.setProperty('--h', points);
+    });
+  }());
+  </script>
+</slide>

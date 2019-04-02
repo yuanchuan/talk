@@ -1,0 +1,89 @@
+<style>
+  & css-doodle {
+    --color: @p(#E63946, #F1FAEE, #A8DADC, #457B9D, #1D3557);
+    --position: @r(0%, 100%) @r(0%, 100%);
+
+    --pat-1: (
+      linear-gradient(var(--color), @lp())
+      var(--position) / @r(1px) @r(15%)
+      no-repeat
+    );
+    --pat-2: (
+      linear-gradient(
+      @pick(
+        -270deg, -225deg, -180deg, -135deg, -90deg, -45deg,
+        0deg, 45deg, 90deg, 135deg, 180deg, 225deg, 270deg
+      ),
+      var(--color) 50%, transparent 50%)
+      var(--position) / @r(3%) @lr()
+      no-repeat
+    );
+
+    --pat-3: (
+      linear-gradient(var(--color), @lp())
+      var(--position) / @r(15%) 1px
+      no-repeat
+    );
+
+    --pat-4: (
+      radial-gradient(var(--color), @lp())
+      var(--position) / @r(5%) @lr()
+      no-repeat
+    );
+
+    --pat-5: (
+      radial-gradient(var(--color) 50%, transparent 50%)
+      var(--position) / @r(5%) @lr()
+      no-repeat
+    );
+
+    --pat-6: (
+      conic-gradient(
+        from calc(145deg + @ri(4) * 90deg), var(--color) 0,
+        @lp() 20%,
+        transparent 20%,
+        transparent 50%
+      )
+      var(--position) / @r(5%) @lr()
+      no-repeat
+    );
+
+    --pat-7: (
+      linear-gradient(
+        @p(45deg, -45deg),
+        transparent 0,
+        transparent calc(50% - .2px),
+         var(--color)
+          calc(50% - .5px),
+         @lp()
+          calc(50% + .5px),
+        transparent calc(50% + .2px)
+      )
+      var(--position) / @r(5%) @lr()
+      no-repeat
+    );
+
+    --rule: (
+      :doodle {
+        @grid: 1 / 100vmax;
+        position: absolute;
+      }
+      background-blend-mode: color-burn;
+      background:
+        @m(80, var(--pat-1)),
+        @m(80, var(--pat-2)),
+        @m(80, var(--pat-3)),
+        @m(80, var(--pat-4)),
+        @m(80, var(--pat-5)),
+        @m(80, var(--pat-6)),
+        @m(80, var(--pat-7));
+    );
+  }
+</style>
+
+
+<slide>
+  <content>
+    <css-doodle use="var(--rule)" click-to-update></css-doodle>
+  </content>
+</slide>

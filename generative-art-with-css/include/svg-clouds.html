@@ -1,0 +1,50 @@
+<slide bg="cloud">
+  <content>
+    <p>
+      Clouds
+    </p>
+  </content>
+</slide>
+
+<style>
+  & css-doodle {
+    position: absolute;
+  }
+</style>
+
+<slide>
+  <content>
+    <preview long>
+      <result>
+        <css-doodle click-to-update></css-doodle>
+      </result>
+      <textarea code live>
+        :doodle {
+          @grid: 1 / 100vmin;
+
+          filter: @svg-filter(<svg>
+            <filter>
+              <feTurbulence
+                type="fractalNoise"
+                seed="@r(1000)"
+                baseFrequency=".007"
+                numOctaves="10" />
+              <feDisplacementMap
+                in="SourceGraphic"
+                scale="240"
+              />
+            </filter>
+          </svg>)
+        }
+
+        box-shadow: @m(100, (
+          @r(100vw) @r(100vh)
+          @r(10vmin, 20vmin) @r(20vmin)
+          @p(#fff, #3F1282)
+        ));
+
+        @size: 1px;
+      </textarea>
+    </preview>
+  </content>
+</slide>

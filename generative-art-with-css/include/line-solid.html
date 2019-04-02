@@ -1,0 +1,75 @@
+<style>
+  & css-doodle {
+    --line: (
+      :doodle {
+        @size: 70% 10px;
+        background: #000;
+      }
+    );
+  }
+
+  & result:after {
+    content: '直线';
+    position: absolute;
+    bottom: -7.5vw;
+    font-size: 15vw;
+    font-weight: bold;
+    color: rgba(0, 0, 0, .05);
+  }
+
+  & [focus] {
+    background: #282a36;
+  }
+</style>
+
+<slide>
+  <content>
+    <preview>
+      <result>
+        <css-doodle use="var(--line)"></css-doodle>
+      </result>
+      <ul focus>
+        <li>
+          <textarea code>
+            width: 70%;
+            height: 10px;
+
+            background-color: #000;
+          </textarea>
+        </li>
+
+        <li>
+          <textarea code>
+            border-top: 10px solid #000;
+          </textarea>
+        </li>
+
+        <li>
+          <textarea code>
+            background:
+              linear-gradient(#000, #000)
+              50% / 70% 10px
+              no-repeat;
+          </textarea>
+        </li>
+        <li>
+          <textarea code>
+            ::after {
+              /* control line length */
+              content: '_______';
+
+              /* hide content */
+              color: transparent;
+
+              /* set thickness */
+              font-size: 5em;
+
+              text-decoration:
+                line-through #000;
+            }
+          </textarea>
+        </li>
+      </ul>
+    </preview>
+  </content>
+</slide>

@@ -1,0 +1,27 @@
+<slide>
+  <content data-title="Unicode" en>
+    <css-doodle click-to-update auto-update>
+      :doodle {
+        @grid: 6x16 / 100vmin 70vmin;
+      }
+      :after {
+        color: #000;
+        content: \@hex(@calc(0x25a0 + @i()));
+        font-size: 6vmin;
+      }
+
+      @random(.1) {
+        :after {
+          color: @p(#51eaea, #ff9d76, #fb3569);
+        }
+      }
+
+      animation: s @r(500ms) linear;
+
+      @keyframes s {
+        from { transform: scale(0); }
+        to { transform: scale(1); }
+      }
+    </css-doodle>
+  </content>
+</slide>

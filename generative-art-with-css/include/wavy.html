@@ -1,0 +1,261 @@
+<style>
+  & [sec-title] {
+    font-size: .8em;
+  }
+  & [sec-wavy] {
+    text-decoration: underline wavy #FF5D88;
+  }
+</style>
+
+<slide>
+  <content>
+    <p sec-title>
+      text-decoration
+    </p>
+  </content>
+</slide>
+
+
+<slide>
+  <content data-title="decoration" en>
+    <p sec-wavy>
+      wavy
+    </p>
+  </content>
+</slide>
+
+<slide>
+  <content data-title="decoration" en>
+    <preview>
+      <result>
+      <css-doodle click-to-update></css-doodle>
+      </result>
+      <textarea code live>
+        transform: translateY(-50%);
+
+        ::after {
+          content: @repeat(10, _);
+          color: transparent;
+          writing-mode: vertical-lr;
+          font-size: 8vmin;
+          text-decoration:
+            line-through wavy #000;
+        }
+      </textarea>
+    </preview>
+  </content>
+</slide>
+
+
+<style>
+  & [wavy-live] css-doodle {
+    --wavy: (
+      position: absolute;
+      left: 50%; top: 50%;
+      @size: 50% 1px;
+
+      :after {
+        content: @repeat(10, _);
+        font-size: 4vmin;
+        background: transparent;
+        position: absolute;
+        left: 0%;
+        color: transparent;
+        text-decoration: line-through @p(wavy) #000;
+        transform-style: preserve-3d;
+        transform: rotateX(@pn(0, -180deg));
+      }
+    );
+  }
+
+</style>
+
+<slide>
+  <content data-title="decoration" en>
+    <preview>
+      <result wavy-live>
+        <css-doodle click-to-update use="var(--wavy)"></css-doodle>
+      </result>
+      <textarea code live>
+        :doodle {
+          @grid: 10x1 / 80vmin;
+        }
+
+        transform-origin: 0 center;
+        transform: rotate(
+          calc(1turn / @size() * @i())
+        );
+
+        /* ... */
+      </textarea>
+    </preview>
+  </content>
+</slide>
+
+<slide>
+  <content data-title="decoration" en>
+    <preview>
+      <result wavy-live>
+        <css-doodle click-to-update use="var(--wavy)"></css-doodle>
+      </result>
+      <textarea code live>
+        :doodle {
+          @grid: 20x1 / 80vmin;
+          perspective: 80;
+        }
+
+        transform-origin: 0 center;
+        transform: rotate(
+          calc(1turn / @size() * @i())
+        ) rotateY(-60deg);
+
+        ::after {
+          content: @repeat(10, '.');
+          color: #000;
+        }
+      </textarea>
+    </preview>
+  </content>
+</slide>
+
+
+<slide>
+  <content style="--bg-color: #271034">
+    <css-doodle>
+      :doodle {
+        @grid: 20x1 / 80vmin;
+      }
+      :container {
+        perspective: 30px;
+      }
+
+      position: absolute;
+      left: 50%; top: 50%;
+      @size: 50% 1px;
+      transform-origin: 0 center;
+
+      transform: rotate(
+        calc(360deg / @size() * @i())
+      ) rotateY(-54deg);
+      --r: @pn(0, -180deg);
+      :after {
+        content: @repeat(2, ____----____----____----____----);
+        font-size: 3vmin;
+        background: transparent;
+        position: absolute;
+        left: 0%;
+        color: transparent;
+        text-decoration: line-through @p(wavy)
+          @pd(#feffdf, #ffe79a, #FFA952, #EF5A5A);
+        transform-style: preserve-3d;
+        transform: rotateX(var(--r)) translateX(-5%);
+      }
+      mix-blend-mode: overlay;
+    </css-doodle>
+  </content>
+</slide>
+
+<style>
+  &[animation] css-doodle {
+    --start-animate: (
+      :container {
+        animation: p 16s cubic-bezier(0.55, 0.085, 0.68, 0.53);
+        animation-direction: alternate;
+        animation-fill-mode: both;
+      }
+      :after {
+        animation: r @r(3000ms) linear;
+        animation-delay: 13s;
+      }
+    );
+    --stop-animate: (
+      :container {
+        animation: none;
+      }
+      :after {
+        animation: none;
+        animation-delay: 0;
+      }
+    )
+  }
+  &[animation] button {
+    z-index: 10;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: red;
+    padding: 5vmin;
+  }
+</style>
+
+<slide animation>
+  <content style="--bg-color: #271034">
+    <css-doodle>
+      :doodle {
+        @grid: 24x1 / 80vmin;
+      }
+      :container {
+        perspective: 50px;
+        animation-direction: alternate;
+        animation-fill-mode: both;
+      }
+
+      position: absolute;
+      left: 50%; top: 50%;
+      @size: 50% 1px;
+      transform-origin: 0 center;
+
+      transform: rotate(
+        calc(360deg / @size() * @i())
+      ) rotateY(-54deg);
+
+      --r: @pn(0, -180deg);
+
+      :after {
+        content: @repeat(3, ____----____----____----____----);
+        font-size: 2vmin;
+        background: transparent;
+        position: absolute;
+        left: 0%;
+        color: transparent;
+        text-decoration: line-through @p(wavy)
+          @pd(#ff008b, #faf7e6, #FFF8A0, #73DBC4);
+        transform-style: preserve-3d;
+        transform: rotateX(var(--r)) translateX(0%);
+        will-change: transform;
+        animation-fill-mode: both;
+      }
+
+      mix-blend-mode: overlay;
+      @keyframes p {
+        from { perspective: 50px; }
+        to { perspective: 1px; }
+      }
+      @keyframes r {
+         from { opacity: 1; }
+        to { opacity: 0; }
+      }
+    </css-doodle>
+  </content>
+  <script>
+    (function() {
+      let doodle = document.querySelector('&[animation] css-doodle');
+      let playing = false;
+      function startAnimation() {
+        doodle.use = 'var(--start-animate)';
+      }
+      function stopAnimation() {
+        doodle.use = 'var(--stop-animate)';
+      }
+      doodle.addEventListener('click', e => {
+        if (!playing) {
+          playing = true;
+          startAnimation();
+        } else {
+          stopAnimation();
+          playing = false;
+        }
+      });
+    }());
+  </script>
+</slide>

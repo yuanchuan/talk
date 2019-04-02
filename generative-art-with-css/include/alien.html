@@ -1,0 +1,22 @@
+<slide>
+  <content data-title="clip-path" en>
+    <css-doodle click-to-update>
+      :doodle {
+        @grid: 9x14 / 100vmin 70vmin;
+      }
+      @size: 7vmin;
+      @shape: alien
+        @p([2-9])
+        @p([1-9])
+        @p([1-4]);
+      transform: rotate(@r(360deg));
+      background: #000;
+
+      @random(.1) {
+        background: @p(
+          #51eaea, #ff9d76, #fb3569
+        );
+      }
+    </css-doodle>
+  </content>
+</slide>

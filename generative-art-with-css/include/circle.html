@@ -1,0 +1,141 @@
+<style>
+  & css-doodle {
+    --circle: (
+      :doodle {
+        @size: 40vmin;
+        background: #000;
+        border-radius: 50%;
+      }
+    );
+  }
+
+  & result:after {
+    content: '圆形';
+    position: absolute;
+    bottom: -7.5vw;
+    font-size: 15vw;
+    font-weight: bold;
+    color: rgba(0, 0, 0, .05);
+  }
+  &[semi] result:after {
+    content: '半圆';
+  }
+</style>
+
+<slide>
+  <content>
+    <preview>
+      <result>
+        <css-doodle use="var(--circle)">
+          :doodle {
+            border-radius: 0;
+          }
+        </css-doodle>
+      </result>
+      <textarea code>
+        --radius: 40vmin;
+
+        width: var(--radius);
+        height: var(--radius);
+      </textarea>
+    </preview>
+  </content>
+</slide>
+
+<style>
+  & .dynamic-border-radius {
+    background: #000;
+  }
+</style>
+<slide>
+  <content>
+    <preview>
+      <result>
+        <div class="dynamic-border-radius"></div>
+      </result>
+      <textarea code>
+        border-radius: 50%;
+      </textarea>
+    </preview>
+  </content>
+</slide>
+
+
+<slide>
+  <content>
+    <preview>
+      <result>
+        <css-doodle use="var(--circle)">
+          :doodle {
+            border-radius: 0;
+            background: radial-gradient(
+              #000 70%, transparent 0
+            );
+          }
+        </css-doodle>
+      </result>
+      <textarea code>
+        background-image:
+          radial-gradient(
+            #000 72%, transparent 0
+          );
+      </textarea>
+    </preview>
+  </content>
+</slide>
+
+<slide>
+  <content>
+    <preview>
+      <result>
+        <css-doodle use="var(--circle)"></css-doodle>
+      </result>
+        <textarea code>
+          ::after {
+            content: '·';
+            line-height: 0;
+            font-size: 120vw;
+          }
+        </textarea>
+    </preview>
+  </content>
+</slide>
+
+<slide>
+  <content>
+    <preview>
+      <result>
+        <css-doodle use="var(--circle)">
+          :doodle {
+            border-radius: 0;
+            clip-path: circle(50%);
+          }
+        </css-doodle>
+      </result>
+      <textarea code>
+        clip-path: circle(50%);
+      </textarea>
+    </preview>
+  </content>
+</slide>
+
+<slide semi>
+  <content>
+    <preview>
+      <result>
+        <css-doodle use="var(--circle)">
+          :doodle {
+            border-radius: 0;
+            clip-path: circle(50% at 50% 0);
+            transform: translateY(25%);
+          }
+        </css-doodle>
+      </result>
+        <textarea code>
+          clip-path:
+            circle(50% at 50% 0);
+        </textarea>
+      </ul>
+    </preview>
+  </content>
+</slide>

@@ -1,0 +1,94 @@
+<style>
+  & content:after {
+    content: 'clip-path';
+    position: absolute;
+    bottom: -5vw;
+    font-size: 15vw;
+    font-weight: bold;
+    color: rgba(0, 0, 0, .05);
+  }
+  & result {
+    flex-direction: column;
+  }
+  & result p {
+    margin-top: 2em;
+    font-size: 5vmin;
+  }
+  & preview {
+    justify-content: space-around;
+  }
+  & [sample] {
+    position: relative;
+    width: 40vmin;
+    height: 40vmin;
+    max-width: 30vw;
+    max-height: 30vw;
+  }
+  & [sample] css-doodle {
+    position: absolute;
+  }
+  & css-doodle {
+    --path: 79.38926261462366% 90.45084971874738%,
+            2.447174185242318% 34.549150281252636%,
+            97.55282581475768% 34.54915028125262%,
+            20.610737385376353% 90.45084971874738%,
+            49.99999999999998% 0%;
+    --mark: (
+      :doodle {
+        @grid: 5x1 / 100%;
+        transform: rotate(calc(126deg));
+      }
+      @place-cell: center;
+      @size: 50% 1px;
+
+      transform-origin: 0 50%;
+      transform:
+        translateX(50%)
+        rotate(calc(-360deg / @size() * @i()));
+
+      :after {
+        content: @pn(1, 3, 5, 2, 4);
+        color: #000;
+        position: absolute;
+        font-size: 5vmin;
+        left: calc(100% + .5em);
+        transform: rotate(calc(-126deg + 360deg / @size() * @i()));
+      }
+    );
+  }
+</style>
+
+<slide>
+  <content>
+    <preview>
+      <result>
+        <div sample>
+          <css-doodle>
+            :doodle {
+              @size: 100%;
+              background: #000;
+              clip-path: polygon(var(--path));
+            }
+          </css-doodle>
+          <css-doodle use="var(--mark)"></css-doodle>
+        </div>
+        <p>nonzero</p>
+      </result>
+      <result>
+        <div sample>
+          <css-doodle>
+            :doodle {
+              @size: 100%;
+              background: #000;
+              clip-path: polygon(
+                evenodd, var(--path)
+              )
+            }
+          </css-doodle>
+          <css-doodle use="var(--mark)"></css-doodle>
+        </div>
+        <p>evenodd</p>
+      </result>
+    </preview>
+  </content>
+</slide>

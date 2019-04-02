@@ -1,0 +1,82 @@
+#!/usr/bin/env node
+
+const fs = require('fs');
+const path = require('path');
+
+const input = process.argv[2];
+const output = process.argv[3];
+
+if (!input) {
+  console.log('No input.');
+  process.exit();
+}
+
+const result = build(input, output);
+
+if (output) {
+  fs.writeFileSync(output, result);
+} else {
+  console.log(result);
+}
+
+
+function _(name) {
+  return path.join(__dirname, name.join('').trim());
+}
+
+function buildTag(tag, attrs) {
+  return `<${ tag } ${ attrs.join(' ') }>`;
+}
+
+function parseSimpleTag(input) {
+  let [tag = '', ...attrs] = input
+    .trim()
+    .replace(/[<>]/g, '')
+    .split(/\s+/)
+    .filter(n => !!n.length);
+  return { tag, attrs };
+}
+
+function transform(input, { name }) {
+  return input
+    .replace(/&/g, `[name="${ name }"]`)
+    .split(/\n/).map(line => {
+      if (/^\s*<slide/.test(line)) {
+        let { tag, attrs } = parseSimpleTag(line);
+        return buildTag(tag, [...attrs, `name="${ name }"`]);
+      }
+      return line;
+    })
+    .join('\n');
+}
+
+function readSlide(name) {
+  let baseName = name;
+  if (!/\.html$/.test(name)) {
+    name += '.html';
+  }
+  let slide = path.join(_`../include`, name);
+  return transform(read(slide), { name: baseName });
+}
+
+function read(name) {
+  try {
+    return fs.readFileSync(name, 'utf8');
+  } catch (e) {
+    return '';
+  }
+}
+
+function build(input, output) {
+  return read(input).split(/\n/)
+    .map(line => {
+      if (line.includes('<slide src=')) {
+        let src = line.replace(/.+"(.+)".+/, (_, n) => n);
+        if (src) {
+          return readSlide(src);
+        }
+      }
+      return line;
+    })
+    .join('\n');
+}

@@ -1,0 +1,117 @@
+<slide>
+  <content>
+    <p>
+      CSS Houdini
+    </p>
+  </content>
+</slide>
+
+
+<style>
+  & [code-block] {
+    background: #272a36;
+    width: 100vw;
+    height: 100vh;
+  }
+  & [code-block] .code-sample {
+    font-size: 3vw;
+  }
+</style>
+<slide>
+  <content code-block>
+    <textarea code>
+      .el {
+
+        background: paint(my-paint);
+
+        --split: 30;
+        --stroke-width: 2;
+        --color: red;
+
+      }
+    </textarea>
+  </content>
+</slide>
+
+<slide>
+  <content code-block>
+    <textarea code>
+      --split: (
+
+        /* Could be anything */
+
+      );
+    </textarea>
+  </content>
+</slide>
+
+<slide>
+  <content code-block>
+    <textarea code>
+      .el {
+
+        background: paint(my-paint);
+
+        --split: 50;
+
+        /* Write JS in CSS */
+        --paint: (ctx, geom) = {
+          let split = var(--split);
+          for (let i = 0; i < split; ++i) {
+
+          }
+        }
+
+      }
+    </textarea>
+  </content>
+</slide>
+
+<slide>
+  <content>
+    <p>
+      Little language
+    </p>
+  </content>
+</slide>
+
+
+<slide>
+  <content code-block>
+    <textarea code>
+      .el {
+
+        background: paint(my-paint);
+
+        --L-system: (
+          variables: X Y
+          constants: F + −
+          start: FX
+          rules: (X => X+YF+), (Y => −FX−Y)
+          angle: 90
+        );
+
+      }
+    </textarea>
+  </content>
+</slide>
+
+
+<slide>
+  <content code-block>
+    <textarea code>
+      .el {
+
+        background: paint(logo-lang);
+
+        --turtle: (
+           setwidth 10
+           setcolor 4
+           rt 18 fd 50
+           repeat 5 [rt 144 fd 50 lt 72 fd 50]
+        );
+
+      }
+    </textarea>
+  </content>
+</slide>

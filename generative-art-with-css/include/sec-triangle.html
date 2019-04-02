@@ -1,0 +1,33 @@
+<style>
+  & content {
+    position: relative;
+  }
+  & css-doodle {
+    margin: auto;
+    width: 80vmin;
+    height: 80vmin;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+    --circle: (
+      background: #EEF4F6;
+      transition: .5s ease;
+      clip-path: polygon(
+        @r(40%, 60%) @r(10%),
+        @r(90%, 100%) @r(80%, 90%),
+        @r(10%) @r(90%, 100%)
+      );
+    );
+  }
+</style>
+
+<slide>
+  <content>
+    <div class="vertical-wrap">
+      <p>三角形</p>
+      <css-doodle use="var(--circle)" auto-update></css-doodle>
+    </div>
+  </content>
+</slide>

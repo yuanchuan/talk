@@ -1,0 +1,142 @@
+<style>
+  & .cover-text {
+    text-shadow:
+      -.8em -.8em 0 #ddd,
+      .8em .8em 0 #ddd;
+  }
+</style>
+<slide>
+  <content>
+    <p class="cover-text">
+      text-shadow
+    </p>
+  </content>
+</slide>
+
+<style>
+  & css-doodle {
+    --shadow: (
+      :doodle {
+        @grid: 12 / 100vmin;
+        position: absolute;
+        overflow: hidden;
+      }
+      transform: translate(
+        @r(-100%, 100%),
+        @r(-100%, 100%)
+      );
+    );
+  }
+</style>
+
+<slide>
+  <content>
+    <preview>
+      <result>
+      <css-doodle click-to-update use="var(--shadow)"></css-doodle>
+      </result>
+      <textarea code live>
+        --rgb: 255, 5, 146;
+
+        ::after {
+          content: '.';
+          font-size: @r(6em);
+          color: rgba(var(--rgb));
+
+          text-shadow: @m(20, (
+            calc(@n() * -2px)
+            calc(@n() * 2px) 0
+            rgba(
+              var(--rgb),
+              calc(.1 - .1 / 20 * @n())
+            )
+          ));
+        }
+      </textarea>
+    </preview>
+  </content>
+</slide>
+
+<slide>
+  <content data-title="text-shadow" en>
+    <css-doodle click-to-update>
+      :doodle {
+        @grid: 8 / 70vmin;
+        overflow: hidden;
+        background: #fff;
+      }
+
+      :after {
+        transform:
+          rotate(@r(-45deg, 45deg))
+          translate(@r(-50%, 50%), @r(-50%, 50%));
+
+        position: absolute;
+        content: \@hex(@r(0x2F00, 0x2F5F));
+        xcontent: @pd([A-Z]);
+        font-size: @r(5vmin, 30vmin);
+        --rgb: @p(
+          (53, 35, 75),
+          (92, 59, 111),
+          (216, 76, 115),
+          (255, 132, 132)
+        );
+        color: rgb(var(--rgb));
+        font-weight: bold;
+        text-stroke: @r(2px) #fff;
+        xcolor: transparent;
+        text-shadow:
+          @multi(10, (
+            calc(@n() * 1px) calc(@n() * 1px) 0 @pn(currentColor, #fff)
+          )),
+          @multi(10, (
+            calc((@n() + 10) * 1px) calc((@n() + 10) * 1px) 0
+            @pn(rgba(var(--rgb), .1), #fff)
+          ))
+      }
+      </css-doodle>
+  </content>
+</slide>
+
+
+<slide>
+  <ul focus>
+    <li>
+      <content bg="text-shadow-1"></content>
+    </li>
+    <li>
+      <content bg="text-shadow-2"></content>
+    </li>
+  </ul>
+</slide>
+
+
+<slide>
+  <content>
+    <preview>
+      <result>
+      <css-doodle click-to-update></css-doodle>
+      </result>
+      <textarea code live>
+        ::after {
+          content: ')';
+          font-size: 20vmin;
+          transform:
+            rotate(60deg) skew(60deg);
+
+          text-shadow: @multi(20, (
+            @r(-100px, 100px)
+            @r(-100px, 100px)
+            @r(10px) currentColor
+          ));
+        }
+      </textarea>
+    </preview>
+  </content>
+</slide>
+
+
+<slide>
+  <content bg="text-shadow-4">
+  </content>
+</slide>

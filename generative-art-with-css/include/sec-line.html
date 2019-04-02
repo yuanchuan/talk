@@ -1,0 +1,26 @@
+<style>
+  & css-doodle {
+    --lines: (
+      :doodle {
+        @grid: 15x1 / 50vw 25vmin;
+        max-width: 100%;
+      }
+      @size: @r(20%, 70%) 2px;
+      transition: width @r(500ms) ease;
+      --s: calc(1 - 1 / @size() * @i());
+      transform: scaleY(@var(--s));
+      margin: 0 auto;
+      background: #000;
+      opacity: @var(--s);
+    );
+  }
+</style>
+
+<slide>
+  <content>
+    <div class="vertical-wrap">
+      <p>直线</p>
+      <css-doodle use="var(--lines)" auto-update="once"></css-doodle>
+    </div>
+  </content>
+</slide>

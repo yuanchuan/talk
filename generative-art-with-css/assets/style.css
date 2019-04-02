@@ -1,0 +1,270 @@
+html, body, ul, h1, h6, p, img {
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+body {
+  font-family: Georgia, "Hiragino Sans GB", serif;
+  overflow: hidden;
+}
+
+body > slide {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+  background-color: #fff;
+  color: #000;
+}
+
+p {
+  text-align: center;
+  font-weight: bold;
+}
+
+
+a[name], [as-bg] {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+[as-bg] {
+  z-index: 0;
+}
+
+[bg] {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: relative;
+  color: #fff;
+}
+
+content {
+  width: 100%;
+  height: 100%;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  font-size: 10vw;
+  z-index: 1;
+  position: relative;
+  background: var(--bg-color, transparent);
+}
+
+content[words="more"] {
+  font-size: 10vmin;
+}
+
+.CodeMirror-sizer {
+  min-width: unset !important;
+}
+
+slide[curr] content {
+  display: flex;
+}
+
+slide[fade-bg]:after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: 0;
+  background: rgba(103, 58, 183, 0.42);
+}
+
+slide[bg] content {
+  position: relative;
+  z-index: 2;
+}
+
+footer {
+  font-size: .2em;
+  position: absolute;
+  bottom: 5%;
+  right: 5%;
+  color: rgba(255, 255, 255, .5);
+}
+
+[focus] {
+  width: 100%;
+}
+[focus] li {
+  display: none;
+}
+
+[focus] [active] {
+  display: block;
+}
+
+picture {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+picture img {
+  max-width: 90%;
+  max-height: 85vmin;
+}
+
+.vertical-wrap {
+  display: flex;
+  flex-direction: column;
+}
+
+preview {
+  width: 100%;
+  height: 100%;
+  font-size: 2.3vw;
+  text-align: left;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+preview > * {
+  max-width: 50vw;
+  overflow: auto;
+  margin: auto;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+preview > ul {
+  height: 100%;
+}
+
+preview result {
+  position: relative;
+  overflow: hidden;
+}
+
+result:after {
+  z-index: -1;
+}
+
+preview .code-sample {
+  background: #282a36;
+  z-index: 2;
+  max-height: 100vh;
+}
+
+[long] .code-sample {
+  display: block;
+  font-size: 3.5vmin;
+  max-height: 100vh;
+}
+[long] .code-sample .CodeMirror {
+  padding-left: 5vmin;
+  padding-top: 5vmin;
+}
+
+pre, .code-sample, .CodeMirror {
+  font-family: "PT Mono", monospace;
+}
+
+[data-title]:after {
+  content: attr(data-title);
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  bottom: -7.5vw;
+  font-size: 15vw;
+  font-weight: bold;
+  color: rgba(0, 0, 0, .05);
+}
+
+[data-title][en]:after {
+  bottom: -5vw;
+}
+
+.dynamic-border-radius {
+  width: 50vmin;
+  height: 50vmin;
+  border-radius: 50%;
+  --x: 84;
+  --y: 75;
+  --size: 128;
+  --dx: calc(var(--size) - var(--x));
+  --dy: calc(var(--size) - var(--y));
+  border-radius:
+    calc(var(--x) / var(--size) * 100%)
+    calc(var(--dx) / var(--size) * 100%)
+    calc(var(--dx) / var(--size) * 100%)
+    calc(var(--x) / var(--size) * 100%) /
+    calc(var(--y) / var(--size) * 100%)
+    calc(var(--y) / var(--size) * 100%)
+    calc(var(--dy) / var(--size) * 100%)
+    calc(var(--dy) / var(--size) * 100%) ;
+}
+.dynamic-border-radius[dashed] {
+  border: 10px dashed #000;
+}
+.dynamic-border-radius:not([onhover]) {
+  transition: border-radius .5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  border-radius: 50%;
+}
+
+controls {
+  position: fixed;
+  bottom: 2vmin;
+  right: 2vmin;
+  z-index: 999;
+  display: none;
+  user-select: none;
+}
+
+body[touch-device] controls {
+  display: block;
+}
+
+controls span {
+  padding: .5em 2em;
+  background: rgba(0, 0, 0, .5);
+  margin: 0 .2em;
+  color: #fff;
+}
+
+@media screen and (max-width: 40em) {
+  preview {
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: auto;
+  }
+  .code-sample {
+    display: block;
+    font-size: 3.5vmin;
+    max-height: 50vh;
+  }
+  .code-sample .CodeMirror {
+    padding-left: 5vmin;
+    padding-top: 5vmin;
+  }
+  preview > *,
+  preview .code-sample,
+  [long] .code-sample {
+    max-width: unset;
+    max-height: 50vh;
+  }
+}
+
+@media print {
+  body {
+    overflow: auto;
+  }
+  content {
+    display: flex;
+  }
+}

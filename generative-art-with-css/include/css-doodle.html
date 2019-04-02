@@ -1,0 +1,48 @@
+<style>
+  & [css-doodle] {
+    text-align: right;
+  }
+  & [css-doodle] span {
+    font-size: .5em;
+    padding-right: 1em;
+    color: #666;
+  }
+</style>
+
+<slide>
+  <ul focus>
+    <li>
+      <content>
+        <p css-doodle>
+          css-doodle </br><span>.com</span>
+        </p>
+      </content>
+    </li>
+
+    <li>
+      <content data-title="css-doodle" en>
+        <preview>
+          <result>
+            <css-doodle click-to-update auto-update="once"></css-doodle>
+          </result>
+          <textarea code live>
+            :doodle {
+              @grid: 5 / 50vmin;
+            }
+
+            background: #000;
+            transition: @rand(500ms) ease;
+
+            border-radius: @pick(
+              100% 0 0 0,
+              0 100% 0 0,
+              0 0 100% 0,
+              0 0 0 100%
+            );
+          </textarea>
+        </preview>
+      </content>
+
+    </li>
+  </ul>
+</slide>

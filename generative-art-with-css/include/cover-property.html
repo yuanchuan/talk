@@ -1,0 +1,43 @@
+<slide>
+  <content>
+    <p>
+      Properties
+    </p>
+  </content>
+
+  <css-doodle as-bg>
+    :doodle {
+      @grid: 1 / 100vmax;
+    }
+    :container {
+      transform: rotate(23deg) scale(1.5);
+      background: @m(1000, (
+        linear-gradient(
+          transparent,
+          rgba(0, 0, 0, @r(.4))
+        )
+        @r(100%) @r(100%) / 1px @r(20vmin)
+        no-repeat,
+
+        radial-gradient(
+          rgba(0, 0, 0, @r(.4)) 50%,
+          transparent 0
+        )
+        @r(100%) @r(100%) / @r(20px) @lr()
+        no-repeat
+      )),
+      @m(100, (
+        radial-gradient(
+          transparent calc(50% - .5px),
+          calc(50% - .5px),
+          rgba(0, 0, 0, @r(.2)),
+          calc(50% + .5px),
+          rgba(0, 0, 0, @r(.2)),
+          transparent calc(50% + .5px)
+        )
+        @r(100%) @r(100%) / @r(10vmin) @lr()
+        no-repeat
+      ));
+    }
+  </css-doodle>
+</slide>

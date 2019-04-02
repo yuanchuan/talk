@@ -1,0 +1,3482 @@
+<meta charset="utf8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Generative Art With CSS</title>
+
+<link href="assets/lib/codemirror/5.42.2/codemirror.min.css" rel="stylesheet">
+<link href="assets/lib/codemirror/5.42.2/dracula.min.css" rel="stylesheet">
+<script src="assets/lib/codemirror/5.42.2/codemirror.min.js"></script>
+<script src="assets/lib/codemirror/5.42.2/css.min.js"></script>
+<script src="assets/lib/codemirror/5.42.2/javascript.min.js"></script>
+<script src="assets/lib/codemirror/5.42.2/xml.min.js"></script>
+
+<script src="assets/lib/css-doodle-0.6.1.min.js"></script>
+
+<link href="assets/style.css" rel="stylesheet">
+<script src="assets/slide.js"></script>
+
+
+<controls>
+  <span action-prev>Prev</span>
+  <span action-next>Next</span>
+</controls>
+
+<style>
+  [name="cover"] [as-bg] {
+    opacity: .6;
+  }
+  [name="cover"] content {
+  }
+  [name="cover"] em {
+    position: relative;
+    color: #ff5d88;
+    text-shadow:
+      -.05em -.05em #FFC5AE66,
+      .1em .1em #82f6f388;
+  }
+  [name="cover"] em:after, [name="cover"] em:before {
+    content: '';
+    position: absolute;
+    width: 2.3em;
+    height: 2.3em;
+    left: 50%; top: 50%;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff8;
+    z-index: -1;
+    border: 6px double #ea6488dd;
+    border-style: double dashed dotted double;
+  }
+  [name="cover"] em:before {
+    width: 1.7em;
+    height: 1.7em;
+    border-style: dashed dotted double;
+    border-color: #58ecebd1;
+    background: #fff3;
+  }
+</style>
+
+<slide curr name="cover">
+  <content>
+    <p>Generative Art <br/> With <em>CSS</em></p>
+  </content>
+  <css-doodle as-bg auto-update>
+    :doodle {
+      @grid: 14 / 100vmax;
+      --color: #51eaea;
+    }
+    :container {
+      transform: scale(1.4) rotate(45deg);
+    }
+    overflow: hidden;
+    margin: -.5px;
+    border-color: @p(#51eaea, #65799B, #FF9D77, #FB3569);
+    border-width: 1px;
+    border-radius: 50%;
+    border-style: @repeat(4, (
+      @p(solid, dashed, dotted)
+    ));
+
+    :after, :before {
+      content: '';
+      @size: calc(@sqrt(2) * 50%);
+      position: absolute;
+      border-width: inherit;
+      border-color: @p(#51eaea, #65799B, #FF9D77, #FB3569);
+      border-radius: 50%;
+      border-style: @repeat(4, (
+        @p(solid, dashed, dotted)
+      ));
+    }
+    :after {
+      transform: rotate(@r(-180deg, 180deg));
+      z-index: 0;
+      background: conic-gradient(
+        from @r(360deg), #E2EEF1 @r(20%, 70%), transparent 0
+      );
+    }
+    :before {
+      @size: calc(50% - 2px);
+      background: #fff
+        linear-gradient(
+          @p(#51eaea, #E2EEF1, #FF9D77, #FB3569),
+          @lp()
+        )
+        50% 50% / 25% 25%
+        no-repeat;
+      z-index: 1;
+    }
+    @random(.35) {
+      border: none;
+      :after {
+        border: none;
+        background: none;
+      }
+      :before {
+        @size: @r(10%, 20%);
+        border: none;
+        background: @p(#0001, #51eaea, #E2EEF1, #FF9D77, #FB3569);
+        @shape: @p(circle, rhombus, hexagon);
+      }
+    }
+  </css-doodle>
+</slide>
+
+<style>
+  [name="about-me"] content {
+    font-size: 5vw;
+  }
+  [name="about-me"] svg {
+    height: 100%;
+    max-height: 5vw;
+    margin-right: .2em;
+    vertical-align: bottom;
+  }
+  [name="about-me"] li {
+    margin: .4em 0;
+  }
+  [name="about-me"] li a {
+    color: #444b4e;
+    transition: .2s ease;
+  }
+  [name="about-me"] li a:hover  {
+    color: #000;
+  }
+  [name="about-me"] li:first-child a:hover {
+    color: #1EA1F1;
+  }
+</style>
+
+<slide name="about-me">
+  <content>
+    <ul>
+      <li>
+        <svg viewBox="0 0 24 24">
+          <path
+            fill="rgba(29,161,242,1)"
+            d="M23.643 4.937c-.835.37-1.732.62-2.675.733a4.67 4.67 0 0 0 2.048-2.578 9.3 9.3 0 0 1-2.958 1.13 4.66 4.66 0 0 0-7.938 4.25 13.229 13.229 0 0 1-9.602-4.868c-.4.69-.63 1.49-.63 2.342A4.66 4.66 0 0 0 3.96 9.824a4.647 4.647 0 0 1-2.11-.583v.06a4.66 4.66 0 0 0 3.737 4.568 4.692 4.692 0 0 1-2.104.08 4.661 4.661 0 0 0 4.352 3.234 9.348 9.348 0 0 1-5.786 1.995 9.5 9.5 0 0 1-1.112-.065 13.175 13.175 0 0 0 7.14 2.093c8.57 0 13.255-7.098 13.255-13.254 0-.2-.005-.402-.014-.602a9.47 9.47 0 0 0 2.323-2.41z">
+          </path>
+        </svg>
+        <a href="https://twitter.com/yuanchuan23">@yuanchuan23</a>
+      </li>
+      <li>
+        <svg viewBox="0 0 100 100">
+          <path
+            d="M100 34.2c-.4-2.6-3.3-4-5.3-5.3-3.6-2.4-7.1-4.7-10.7-7.1-8.5-5.7-17.1-11.4-25.6-17.1-2-1.3-4-2.7-6-4-1.4-1-3.3-1-4.8 0-5.7 3.8-11.5 7.7-17.2 11.5L5.2 29C3 30.4.1 31.8 0 34.8c-.1 3.3 0 6.7 0 10v16c0 2.9-.6 6.3 2.1 8.1 6.4 4.4 12.9 8.6 19.4 12.9 8 5.3 16 10.7 24 16 2.2 1.5 4.4 3.1 7.1 1.3 2.3-1.5 4.5-3 6.8-4.5 8.9-5.9 17.8-11.9 26.7-17.8l9.9-6.6c.6-.4 1.3-.8 1.9-1.3 1.4-1 2-2.4 2-4.1V37.3c.1-1.1.2-2.1.1-3.1 0-.1 0 .2 0 0zM54.3 12.3L88 34.8 73 44.9 54.3 32.4V12.3zm-8.6 0v20L27.1 44.8 12 34.8l33.7-22.5zM8.6 42.8L19.3 50 8.6 57.2V42.8zm37.1 44.9L12 65.2l15-10.1 18.6 12.5v20.1zM50 60.2L34.8 50 50 39.8 65.2 50 50 60.2zm4.3 27.5v-20l18.6-12.5 15 10.1-33.6 22.4zm37.1-30.5L80.7 50l10.8-7.2-.1 14.4z">
+          </path>
+        </svg>
+        <a href="https://codepen.io/yuanchuan">@yuanchuan</a>
+      </li>
+      <li>
+        <svg viewBox="0 0 16 16" version="1.1" aria-hidden="true">
+          <path
+            fill-rule="evenodd"
+            d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z">
+          </path>
+        </svg>
+        <a href="https://github.com/yuanchuan">@yuanchuan</a>
+      </li>
+    </ul>
+  </content>
+</slide>
+
+<slide name="art">
+  <content>
+    <picture>
+      <img src="assets/images/bamboo.png" />
+    </picture>
+  </content>
+</slide>
+
+<style>
+  [name="art"] footnote {
+    position: absolute;
+    bottom: 1em;
+    right: 1em;
+    font-size: 16px;
+    background: rgba(0, 0, 0, .5);
+    color: #F7E891;
+  }
+</style>
+
+<slide bg="shahua" name="art">
+  <content>
+    <footnote>
+      https://www.zcool.com.cn/work/ZMjA0NjA3MTI=.html
+    </footnote>
+  </content>
+</slide>
+
+
+
+<slide name="cover-css">
+  <content>
+    <p>
+      CSS
+    </p>
+  </content>
+</slide>
+
+
+<style>
+  [name="sec-line"] css-doodle {
+    --lines: (
+      :doodle {
+        @grid: 15x1 / 50vw 25vmin;
+        max-width: 100%;
+      }
+      @size: @r(20%, 70%) 2px;
+      transition: width @r(500ms) ease;
+      --s: calc(1 - 1 / @size() * @i());
+      transform: scaleY(@var(--s));
+      margin: 0 auto;
+      background: #000;
+      opacity: @var(--s);
+    );
+  }
+</style>
+
+<slide name="sec-line">
+  <content>
+    <div class="vertical-wrap">
+      <p>直线</p>
+      <css-doodle use="var(--lines)" auto-update="once"></css-doodle>
+    </div>
+  </content>
+</slide>
+
+<style>
+  [name="line-solid"] css-doodle {
+    --line: (
+      :doodle {
+        @size: 70% 10px;
+        background: #000;
+      }
+    );
+  }
+
+  [name="line-solid"] result:after {
+    content: '直线';
+    position: absolute;
+    bottom: -7.5vw;
+    font-size: 15vw;
+    font-weight: bold;
+    color: rgba(0, 0, 0, .05);
+  }
+
+  [name="line-solid"] [focus] {
+    background: #282a36;
+  }
+</style>
+
+<slide name="line-solid">
+  <content>
+    <preview>
+      <result>
+        <css-doodle use="var(--line)"></css-doodle>
+      </result>
+      <ul focus>
+        <li>
+          <textarea code>
+            width: 70%;
+            height: 10px;
+
+            background-color: #000;
+          </textarea>
+        </li>
+
+        <li>
+          <textarea code>
+            border-top: 10px solid #000;
+          </textarea>
+        </li>
+
+        <li>
+          <textarea code>
+            background:
+              linear-gradient(#000, #000)
+              50% / 70% 10px
+              no-repeat;
+          </textarea>
+        </li>
+        <li>
+          <textarea code>
+            ::after {
+              /* control line length */
+              content: '_______';
+
+              /* hide content */
+              color: transparent;
+
+              /* set thickness */
+              font-size: 5em;
+
+              text-decoration:
+                line-through #000;
+            }
+          </textarea>
+        </li>
+      </ul>
+    </preview>
+  </content>
+</slide>
+
+<style>
+  [name="line-dashed"] css-doodle {
+    --line: (
+      :doodle {
+        width: 70%; height: 0;
+        border-top: 10px dashed #000;
+      }
+    );
+  }
+
+  [name="line-dashed"] result:after {
+    content: '虚线';
+    position: absolute;
+    bottom: -7.5vw;
+    font-size: 15vw;
+    font-weight: bold;
+    color: rgba(0, 0, 0, .05);
+  }
+</style>
+
+
+<slide name="line-dashed">
+  <content>
+    <preview>
+      <result>
+        <css-doodle use="var(--line)"></css-doodle>
+      </result>
+      <textarea code>
+        ::after {
+          /* ... */
+
+          text-decoration-style:
+            dashed;
+        }
+      </textarea>
+    </preview>
+  </content>
+</slide>
+
+<slide name="line-dashed">
+  <content>
+    <preview>
+      <result>
+        <css-doodle use="var(--line)"></css-doodle>
+      </result>
+      <textarea code>
+        ::after {
+          /* ... */
+
+          text-emphasis: '_';
+
+          /* set gap */
+          letter-spacing: 2px;
+        }
+      </textarea>
+    </preview>
+  </content>
+</slide>
+
+<slide name="line-dashed">
+  <content>
+    <preview>
+      <result>
+        <css-doodle use="var(--line)">
+          :doodle {
+            border: none;
+            height: 10px;
+            background:
+              linear-gradient(
+                to right, #000 67%, transparent 0
+              )
+              0 / 30px 10px
+              repeat-x;
+          }
+        </css-doodle>
+      </result>
+      <textarea code>
+        background: linear-gradient(
+          to left,
+          #000 70%, transparent 0
+        );
+
+        background-repeat: repeat-x;
+        background-size: 30px 10px;
+      </textarea>
+    </preview>
+  </content>
+</slide>
+
+<slide name="line-dashed">
+  <content>
+    <preview>
+      <result>
+        <css-doodle use="var(--line)"></css-doodle>
+      </result>
+      <textarea code>
+        border-top: 10px dashed #000;
+      </textarea>
+    </preview>
+  </content>
+</slide>
+
+<slide name="line-dashed">
+  <content>
+    <preview>
+      <result>
+        <div class="dynamic-border-radius" dashed></div>
+      </result>
+      <textarea code>
+        width: 50vmin;
+        height: 50vmin;
+
+        border: 10px dashed #000;
+        border-radius: 50%;
+      </textarea>
+    </preview>
+  </content>
+</slide>
+
+<style>
+  [name="line-rounded"] css-doodle {
+    --line: (
+      :doodle {
+        @size: 70% 1em;
+        background: #000;
+        border-radius: 1em;
+      }
+    );
+  }
+
+  [name="line-rounded"] result:after {
+    content: '圆角';
+    position: absolute;
+    bottom: -7.5vw;
+    font-size: 15vw;
+    font-weight: bold;
+    color: rgba(0, 0, 0, .05);
+  }
+
+  [name="line-rounded"][oops] {
+    background: #272A36;
+  }
+  [name="line-rounded"][oops]:after {
+    content: 'Oooooops';
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    bottom: -6vw;
+    font-size: 15vw;
+    font-weight: bold;
+    color: rgba(255, 255, 255, .1);
+  }
+  [name="line-rounded"] .figure-list img {
+    max-height: 95vmin;
+  }
+</style>
+
+<slide name="line-rounded">
+  <content>
+    <preview>
+      <result>
+        <css-doodle use="var(--line)"></css-doodle>
+      </result>
+      <textarea code>
+        width: 70%;
+        height: 1em;
+        background-color: #000;
+
+        border-radius: 1em;
+      </textarea>
+    </preview>
+  </content>
+</slide>
+
+<slide oops name="line-rounded">
+  <content>
+    <picture>
+      <img src="assets/images/border.png" />
+    </picture>
+  </content>
+</slide>
+
+
+<slide name="line-rounded">
+  <content>
+    <preview>
+      <result>
+        <css-doodle>
+          :doodle {
+            @grid: 2x1 / 70% 5em;
+          }
+          height: 1em;
+          margin: auto 0;
+          background:
+            linear-gradient(@pn(#9999, #000), @lp()) 50% / calc(100% - 1em) 1em no-repeat,
+            radial-gradient(#000 70%, transparent 0) 0 50% / 1em 1em no-repeat,
+            radial-gradient(#000 70%, transparent 0) 100% 50% / 1em 1em no-repeat;
+        </css-doodle>
+      </result>
+      <textarea code>
+        background:
+          linear-gradient(/*...*/),
+          radial-gradient(/*...*/),
+          radial-gradient(/*...*/);
+      </textarea>
+    </preview>
+  </content>
+</slide>
+
+
+
+<style>
+  [name="sec-circle"] .vertical-wrap {
+    margin-top: -10vmin;
+  }
+  [name="sec-circle"] p {
+    margin-bottom: 5vmin;
+  }
+  [name="sec-circle"] css-doodle {
+    --circle: (
+      :doodle {
+        @grid: 1x4 / 60vmin 15vmin;
+      }
+
+      border-radius: 50%;
+      @size: 90%;
+      @nth(1) {
+        border: 5px solid #000;
+      }
+      @nth(2) {
+        background: @m(20, (
+          radial-gradient(#000 50%, transparent 0)
+          calc( @cos(@PI() / 10 * @n()) * 50% + 50% )
+          calc( @sin(@PI() / 10 * @n()) * 50% + 50%) / 2vmin 2vmin
+          no-repeat
+        ));
+        animation: r 25s linear infinite;
+      }
+      @nth(3) {
+        border: 5vmin double #000;
+      }
+      @nth(4) {
+        background: #000;
+      }
+      @keyframes r {
+        to { transform: rotate(360deg) }
+      }
+    );
+  }
+</style>
+
+<slide name="sec-circle">
+  <content>
+    <div class="vertical-wrap">
+      <p>圆形</p>
+      <css-doodle use="var(--circle)"></css-doodle>
+    </div>
+  </content>
+</slide>
+
+<style>
+  [name="circle"] css-doodle {
+    --circle: (
+      :doodle {
+        @size: 40vmin;
+        background: #000;
+        border-radius: 50%;
+      }
+    );
+  }
+
+  [name="circle"] result:after {
+    content: '圆形';
+    position: absolute;
+    bottom: -7.5vw;
+    font-size: 15vw;
+    font-weight: bold;
+    color: rgba(0, 0, 0, .05);
+  }
+  [name="circle"][semi] result:after {
+    content: '半圆';
+  }
+</style>
+
+<slide name="circle">
+  <content>
+    <preview>
+      <result>
+        <css-doodle use="var(--circle)">
+          :doodle {
+            border-radius: 0;
+          }
+        </css-doodle>
+      </result>
+      <textarea code>
+        --radius: 40vmin;
+
+        width: var(--radius);
+        height: var(--radius);
+      </textarea>
+    </preview>
+  </content>
+</slide>
+
+<style>
+  [name="circle"] .dynamic-border-radius {
+    background: #000;
+  }
+</style>
+<slide name="circle">
+  <content>
+    <preview>
+      <result>
+        <div class="dynamic-border-radius"></div>
+      </result>
+      <textarea code>
+        border-radius: 50%;
+      </textarea>
+    </preview>
+  </content>
+</slide>
+
+
+<slide name="circle">
+  <content>
+    <preview>
+      <result>
+        <css-doodle use="var(--circle)">
+          :doodle {
+            border-radius: 0;
+            background: radial-gradient(
+              #000 70%, transparent 0
+            );
+          }
+        </css-doodle>
+      </result>
+      <textarea code>
+        background-image:
+          radial-gradient(
+            #000 72%, transparent 0
+          );
+      </textarea>
+    </preview>
+  </content>
+</slide>
+
+<slide name="circle">
+  <content>
+    <preview>
+      <result>
+        <css-doodle use="var(--circle)"></css-doodle>
+      </result>
+        <textarea code>
+          ::after {
+            content: '·';
+            line-height: 0;
+            font-size: 120vw;
+          }
+        </textarea>
+    </preview>
+  </content>
+</slide>
+
+<slide name="circle">
+  <content>
+    <preview>
+      <result>
+        <css-doodle use="var(--circle)">
+          :doodle {
+            border-radius: 0;
+            clip-path: circle(50%);
+          }
+        </css-doodle>
+      </result>
+      <textarea code>
+        clip-path: circle(50%);
+      </textarea>
+    </preview>
+  </content>
+</slide>
+
+<slide semi name="circle">
+  <content>
+    <preview>
+      <result>
+        <css-doodle use="var(--circle)">
+          :doodle {
+            border-radius: 0;
+            clip-path: circle(50% at 50% 0);
+            transform: translateY(25%);
+          }
+        </css-doodle>
+      </result>
+        <textarea code>
+          clip-path:
+            circle(50% at 50% 0);
+        </textarea>
+      </ul>
+    </preview>
+  </content>
+</slide>
+
+
+<style>
+  [name="sec-triangle"] content {
+    position: relative;
+  }
+  [name="sec-triangle"] css-doodle {
+    margin: auto;
+    width: 80vmin;
+    height: 80vmin;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+    --circle: (
+      background: #EEF4F6;
+      transition: .5s ease;
+      clip-path: polygon(
+        @r(40%, 60%) @r(10%),
+        @r(90%, 100%) @r(80%, 90%),
+        @r(10%) @r(90%, 100%)
+      );
+    );
+  }
+</style>
+
+<slide name="sec-triangle">
+  <content>
+    <div class="vertical-wrap">
+      <p>三角形</p>
+      <css-doodle use="var(--circle)" auto-update></css-doodle>
+    </div>
+  </content>
+</slide>
+
+<style>
+  [name="triangle"] css-doodle {
+    --triangle: (
+      :doodle {
+        @size: 50vmin;
+      }
+    );
+  }
+  [name="triangle"] result:after {
+    content: '三角形';
+    position: absolute;
+    bottom: -7.5vw;
+    font-size: 15vw;
+    font-weight: bold;
+    color: rgba(0, 0, 0, .05);
+  }
+  #border-triangle {
+    width: 50vmin;
+    height: 50vmin;
+    position: relative;
+  }
+  #border-triangle:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0);
+  }
+  #border-triangle > div {
+    width: 0; height: 0;
+    border-width: 25vmin;
+    border-color: #eee #f5f5f5;
+    border-style: solid;
+    border-bottom-color: #000;
+    z-index: -1;
+    transition: all .5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+  #border-triangle[onhover] > div {
+    transition: none;
+    border-left-width: calc(var(--left) * 1px);
+    border-top-width: calc(var(--top) * 1px);
+    border-bottom-width: calc(var(--bottom) * 1px);
+    border-right-width: calc(var(--right) * 1px);
+  }
+</style>
+
+<slide name="triangle">
+  <content>
+    <preview>
+      <result>
+        <div id="border-triangle">
+          <div></div>
+        </div>
+      </result>
+      <textarea code>
+        width: 0; height: 0;
+
+        border-style: solid;
+        border-color: transparent;
+        border-width: <size>;
+        border-bottom-color: #000;
+      </textarea>
+    </preview>
+  </content>
+  <script>
+    (function() {
+      const box = document.getElementById('border-triangle');
+      box.addEventListener('mouseleave', e => {
+        box.removeAttribute('onhover');
+      });
+      box.addEventListener('mousemove', e => {
+        box.setAttribute('onhover', true);
+        var size = parseInt(getComputedStyle(box).width);
+        var x = e.offsetX;
+        var y = e.offsetY;
+        box.style.setProperty('--top', y);
+        box.style.setProperty('--right', size - x);
+        box.style.setProperty('--bottom', size - y);
+        box.style.setProperty('--left', x);
+      });
+    }());
+  </script>
+</slide>
+
+<slide name="triangle">
+  <content>
+    <preview>
+      <result>
+        <css-doodle use="var(--triangle)">
+          :doodle {
+            @grid: 2 / 50vmin;
+            gap: 2vmin;
+          }
+          background: linear-gradient(
+            @pn(45deg, -45deg, -135deg, 135deg),
+            #000 50%, transparent 0
+          );
+          :after {
+            content:@pn(45, -45, -135, 135);
+            transform:
+              rotate(@pn(45deg, -45deg))
+              translate(@pn(
+                '0, -80%',
+                '0, -80%',
+                '0, 60%',
+                '0, 60%'
+              ))
+          }
+        </css-doodle>
+      </result>
+      <textarea code>
+        background: linear-gradient(
+          <deg>, #000 50%,
+          transparent 0
+        );
+      </textarea>
+    </preview>
+  </content>
+</slide>
+
+<slide name="triangle">
+  <content>
+    <preview>
+      <result>
+        <css-doodle use="var(--triangle)" auto-update>
+          :doodle {
+            @grid: 2 / 50vmin;
+            gap: 1vmin;
+          }
+          background: #000;
+          transform: rotate(@r(360deg));
+          transition: clip-path @r(500ms) ease;
+          clip-path: polygon(
+            @r(100%) 0, 100% @r(100%), 0 @r(100%)
+          );
+        </css-doodle>
+      </result>
+      <textarea code>
+        clip-path: polygon(
+          <x y>,
+          <x y>,
+          <x y>
+        );
+      </textarea>
+    </preview>
+  </content>
+</slide>
+
+
+<slide name="unicode">
+  <content data-title="Unicode" en>
+    <css-doodle click-to-update auto-update>
+      :doodle {
+        @grid: 6x16 / 100vmin 70vmin;
+      }
+      :after {
+        color: #000;
+        content: \@hex(@calc(0x25a0 + @i()));
+        font-size: 6vmin;
+      }
+
+      @random(.1) {
+        :after {
+          color: @p(#51eaea, #ff9d76, #fb3569);
+        }
+      }
+
+      animation: s @r(500ms) linear;
+
+      @keyframes s {
+        from { transform: scale(0); }
+        to { transform: scale(1); }
+      }
+    </css-doodle>
+  </content>
+</slide>
+
+
+<style>
+  [name="sec-polygon"] .vertical-wrap {
+    margin-top: -10vmin;
+  }
+  [name="sec-polygon"] p {
+    margin-bottom: 5vmin;
+  }
+  [name="sec-polygon"] css-doodle {
+    margin: auto;
+    --shapes: (
+      :doodle {
+        @grid: 1x5 / 75vmin 15vmin;
+      }
+      transform: scale(.95);
+      background: #000;
+      transition: .2s ease;
+      @shape: @pn(pentagon, hexagon, heptagon, octagon, bud @p(3,4, 5, 6, 7, 8, 9, 10));
+      @even {
+        :after {
+          content: '';
+          position: absolute;
+          @size: 100%;
+          @shape: @lp();
+          background: #fff;
+          transform: scale(.9);
+        }
+      }
+    );
+  }
+</style>
+
+<slide name="sec-polygon">
+  <content>
+    <div class="vertical-wrap">
+      <p>多边形</p>
+      <css-doodle use="var(--shapes)" auto-update="2000"></css-doodle>
+    </div>
+  </content>
+</slide>
+
+<style>
+  [name="polygon"] {
+    background:
+      linear-gradient(to left, #000 50%, transparent 0) 0 / 1vmin 1px repeat-x,
+      linear-gradient(to bottom, #000 50%, transparent 0) 50% / 1px 1vmin repeat-y;
+    background-color: #fff;
+  }
+  [name="polygon"] [focus] {
+    position: absolute;
+  }
+  [name="polygon"] [focus] css-doodle {
+    margin: auto;
+  }
+  [name="polygon"] polygon {
+    width: 80vmin;
+    height: 80vmin;
+    margin: auto;
+    display: block;
+    --h: 1;
+    background: hsla(
+      calc(var(--h) * 10), 80%, 80%, .5
+    );
+    clip-path: var(--polygon);
+  }
+  [name="polygon"] polygon:after {
+    content: 'n = 'attr(points);
+    position: absolute;
+    font-size: 8vmin;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    color: #000;
+  }
+  [name="polygon"] [code-block] {
+    background: #272A36;
+    width: 100vw;
+    height: 100vh;
+  }
+  [name="polygon"] [code-block] .code-sample {
+    max-height: 100vh;
+  }
+  [name="polygon"] .code-sample {
+    font-size: 2.3vw;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1.3;
+  }
+  [name="polygon"] [heart] p {
+    font-size: 3vmin;
+    position: fixed;
+    right: 5vmin;
+    bottom: 5vmin;
+    white-space: nowrap;
+    text-align: left;
+  }
+  [name="polygon"] [heart] p i {
+    margin-left: 4px;
+  }
+</style>
+
+
+<slide name="polygon">
+  <content>
+    <ul focus>
+      <li>
+        <css-doodle>
+          :doodle {
+            @grid: 4x1 / 80vmin;
+            background: hsla(20, 0%, 80%, .2);
+          }
+          @place-cell: center;
+          @size: 100%;
+          font-size: 6vmin;
+          @nth(1) {
+            :after {
+              content: 'θ';
+              transform: translate(7vmin, -50%);
+            }
+          }
+          @nth(2) {
+            transform: translate(calc(50% + 3vmin), -3vmin);
+            :after {
+              content: 'R';
+            }
+          }
+          @nth(3) {
+            @size: 100% 1px;
+            transform-origin: 0 0;
+            transform: translateX(50%) rotate(-45deg);
+            background:
+              linear-gradient(to right, #000 50%, transparent 0)
+              0 / 1vmin 1px
+              repeat-x;
+          }
+          @nth(4) {
+            @size: 30%;
+            border: 1px dashed red;
+            border-left-color: transparent;
+            border-bottom-color: transparent;
+            transform: translate(50%, -50%);
+            :after {
+              content: 'x, y';
+              position: absolute;
+              top: 0;
+              right: 0;
+              transform: translate(120%, -50%);
+            }
+          }
+        </css-doodle>
+      </li>
+
+      <li code-block>
+        <textarea code="javascript">
+          function polygon(n = 3) {
+            let deg = 2 * Math.PI / n;
+            let points = [];
+            for (let i = 0; i < n; ++i) {
+              let theta = deg * i;
+              let x = 50 * Math.cos(theta) + 50 + '%';
+              let y = 50 * Math.sin(theta) + 50 + '%';
+              points.push(x + ' ' + y);
+            }
+            return `polygon(${ points.join(',') })`;
+          }
+        </textarea>
+      </li>
+
+      <li><polygon points="3"></polygon></li>
+      <li><polygon points="4"></polygon></li>
+      <li><polygon points="5"></polygon></li>
+      <li><polygon points="6"></polygon></li>
+      <li><polygon points="7"></polygon></li>
+      <li><polygon points="8"></polygon></li>
+      <li><polygon points="9"></polygon></li>
+      <li><polygon points="10"></polygon></li>
+      <li><polygon points="15"></polygon></li>
+      <li><polygon points="160"></polygon></li>
+      <li heart>
+        <css-doodle>
+          :doodle {
+            @grid: 2x1 / 80vmin;
+            @shape: heart;
+            background: hsla(
+              1800, 80%, 80%, .5
+            );
+          }
+          @size: 100% 1em;
+        </css-doodle>
+        <p>
+          x = 16 sin<sup>3</sup><i>t</i></br>
+          y = 13 cos<i>t</i> - 5 cos<i>2t</i> - 2 cos<i>3t</i> - cos<i>4t</i>
+        </p>
+      </li>
+    </ul>
+  </content>
+  <script>
+  (function() {
+    function polygon(n = 3) {
+      let theta = 2 * Math.PI / n;
+      let points = [];
+      for (let i = 0; i < n; ++i) {
+        let deg = theta * i;
+        let x = 50 * Math.cos(deg) + 50 + '%';
+        let y = 50 * Math.sin(deg) + 50 + '%';
+        points.push(x + ' ' + y);
+      }
+      return `polygon(${ points.join(',') })`;
+    }
+
+    let polygons = document.querySelectorAll('[name="polygon"] polygon');
+    Array.from(polygons).forEach(p => {
+      let points = parseInt(p.getAttribute('points')) || 3;
+      p.style.setProperty('--polygon', polygon(points));
+      p.style.setProperty('--h', points);
+    });
+  }());
+  </script>
+</slide>
+
+<style>
+  [name="lissajous"] h6 {
+    text-align: center;
+  }
+  [name="lissajous"] p {
+    font-size: .6em;
+    text-align: left;
+  }
+  [name="lissajous"] img {
+    max-width: 80%;
+    display: block;
+    margin: auto;
+  }
+  [name="lissajous"] [formula]:after {
+    content: 'Lissajous';
+    position: absolute;
+    bottom: -5vw;
+    font-size: 15vw;
+    font-weight: bold;
+    color: rgba(0, 0, 0, .05);
+  }
+</style>
+
+<slide name="lissajous">
+  <ul focus>
+    <li>
+      <content>
+        <div>
+          <img bg src="assets/images/curve.png" />
+          <h6>Lissajous curve</h6>
+        </div>
+      </content>
+    </li>
+    <li>
+      <content formula>
+        <p>
+          x = A sin(<i>at</i> + <i>𝛿</i>) </br>
+          y = B sin(<i>bt</i>)
+        </p>
+      </div>
+    </li>
+  </ul>
+</slide>
+
+<style>
+  [name="evenodd"] content:after {
+    content: 'clip-path';
+    position: absolute;
+    bottom: -5vw;
+    font-size: 15vw;
+    font-weight: bold;
+    color: rgba(0, 0, 0, .05);
+  }
+  [name="evenodd"] result {
+    flex-direction: column;
+  }
+  [name="evenodd"] result p {
+    margin-top: 2em;
+    font-size: 5vmin;
+  }
+  [name="evenodd"] preview {
+    justify-content: space-around;
+  }
+  [name="evenodd"] [sample] {
+    position: relative;
+    width: 40vmin;
+    height: 40vmin;
+    max-width: 30vw;
+    max-height: 30vw;
+  }
+  [name="evenodd"] [sample] css-doodle {
+    position: absolute;
+  }
+  [name="evenodd"] css-doodle {
+    --path: 79.38926261462366% 90.45084971874738%,
+            2.447174185242318% 34.549150281252636%,
+            97.55282581475768% 34.54915028125262%,
+            20.610737385376353% 90.45084971874738%,
+            49.99999999999998% 0%;
+    --mark: (
+      :doodle {
+        @grid: 5x1 / 100%;
+        transform: rotate(calc(126deg));
+      }
+      @place-cell: center;
+      @size: 50% 1px;
+
+      transform-origin: 0 50%;
+      transform:
+        translateX(50%)
+        rotate(calc(-360deg / @size() * @i()));
+
+      :after {
+        content: @pn(1, 3, 5, 2, 4);
+        color: #000;
+        position: absolute;
+        font-size: 5vmin;
+        left: calc(100% + .5em);
+        transform: rotate(calc(-126deg + 360deg / @size() * @i()));
+      }
+    );
+  }
+</style>
+
+<slide name="evenodd">
+  <content>
+    <preview>
+      <result>
+        <div sample>
+          <css-doodle>
+            :doodle {
+              @size: 100%;
+              background: #000;
+              clip-path: polygon(var(--path));
+            }
+          </css-doodle>
+          <css-doodle use="var(--mark)"></css-doodle>
+        </div>
+        <p>nonzero</p>
+      </result>
+      <result>
+        <div sample>
+          <css-doodle>
+            :doodle {
+              @size: 100%;
+              background: #000;
+              clip-path: polygon(
+                evenodd, var(--path)
+              )
+            }
+          </css-doodle>
+          <css-doodle use="var(--mark)"></css-doodle>
+        </div>
+        <p>evenodd</p>
+      </result>
+    </preview>
+  </content>
+</slide>
+
+<slide name="alien">
+  <content data-title="clip-path" en>
+    <css-doodle click-to-update>
+      :doodle {
+        @grid: 9x14 / 100vmin 70vmin;
+      }
+      @size: 7vmin;
+      @shape: alien
+        @p([2-9])
+        @p([1-9])
+        @p([1-4]);
+      transform: rotate(@r(360deg));
+      background: #000;
+
+      @random(.1) {
+        background: @p(
+          #51eaea, #ff9d76, #fb3569
+        );
+      }
+    </css-doodle>
+  </content>
+</slide>
+
+
+<slide name="more-shapes">
+  <ul focus>
+    <li>
+      <content data-title="box-shadow" en>
+        <preview>
+          <result>
+            <css-doodle click-to-update>
+              :doodle {
+                @grid: 2x1 / 30vmin 60vmin;
+                gap: 2vmin;
+              }
+              border-radius: 50%;
+              box-shadow: @pn(
+                inset 1em -1em #333,
+                inset -1em 2em #333
+              );
+            </css-doodle>
+          </result>
+          <textarea code>
+            border-radius: 50%;
+
+            box-shadow:
+              inset 1em -1em #333;
+          </textarea>
+        </preview>
+      </content>
+    </li>
+
+    <li>
+      <content data-title="box-shadow" en>
+        <css-doodle click-to-update auto-update>
+          :doodle {
+            @grid: 9x14 / 100vmin 70vmin;
+          }
+          border-radius:
+            @r(100%) @r(100%) @r(100%) @r(100%) /
+            @r(100%) @r(100%) @r(100%) @r(100%);
+          @size: @r(5%, 100%) @r(5%, 100%);
+          box-shadow:
+            inset @r(-20px, 20px) @r(-20px, 20px) 0 #000;
+
+          @random(.1) {
+            box-shadow:
+              inset @r(-20px, 20px) @r(-20px, 20px) 0
+              @p(#51eaea, #ff9d76, #fb3569)
+          }
+          transition: all @r(1000ms) ease;
+        </css-doodle>
+      </content>
+    </li>
+  </ul>
+</slide>
+
+
+<slide name="cover-methods">
+  <content>
+    <p>
+      CSS Grid
+    </p>
+  </content>
+  <css-doodle as-bg>
+    :doodle {
+      @grid: 16 / 100vmax;
+    }
+    transform: scale(@r(.2, .9));
+    background: rgba(0, 0, 0, @r(.05, .2));
+  </css-doodle>
+</slide>
+
+<style>
+  [name="grid"] css-doodle {
+    --basic-grid: (
+      :doodle {
+        @grid: 5 / 50vmin;
+      }
+      border: 2px solid #000;
+      margin: -1px;
+    );
+  }
+</style>
+
+<slide name="grid">
+  <content data-title="Grid" en>
+    <preview>
+      <result>
+        <css-doodle use="var(--basic-grid)"></css-doodle>
+      </result>
+      <textarea code="xml">
+        <div class="grid">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <!-- 20 more -->
+        </div>
+      </textarea>
+    </preview>
+  </content>
+</slide>
+
+
+<slide name="grid">
+  <content data-title="Grid" en>
+    <preview>
+      <result>
+        <css-doodle use="var(--basic-grid)"></css-doodle>
+      </result>
+      <textarea code>
+        .grid {
+          --size: 50vmin;
+          width: var(--size);
+          height: var(--size);
+
+          --count: 5;
+          display: grid;
+          grid-template-columns:
+            repeat(var(--count), 1fr);
+          grid-template-rows:
+            repeat(var(--count), 1fr);
+        }
+      </textarea>
+    </preview>
+  </content>
+</slide>
+
+
+<slide name="grid">
+  <content data-title="pattern" en>
+    <css-doodle>
+      :doodle {
+        @grid: 1x2 / 80vmin 50vmin;
+      }
+      @size: 100% 10px;
+      background: #000;
+      margin: auto;
+      transform: rotate(@pn(
+        45deg, -45deg
+      ));
+    </css-doodle>
+  </content>
+</slide>
+
+
+<slide name="grid">
+  <content data-title="Grid" en>
+    <preview>
+      <result>
+        <css-doodle click-to-update auto-update>
+          :doodle {
+            @grid: 5 / 50vmin;
+          }
+          @size: 5px calc(100% * @sqrt(2) + 5px);
+          transform: rotate(@p(45deg, -45deg));
+          background: #000;
+          margin: auto;
+          transition: @r(500ms) ease;
+        </css-doodle>
+      </result>
+      <textarea code>
+        --deg-a: 45deg;
+        --deg-b: -45deg;
+
+        transform: rotate(
+          <pick-one>
+        );
+      </textarea>
+    </preview>
+  </content>
+</slide>
+
+
+<slide name="grid">
+  <content data-title="pattern" en>
+    <css-doodle>
+      :doodle {
+        @grid: 1x4 / 80vmin 20vmin;
+        gap: 1vmin;
+      }
+      background: #000;
+      border-radius: @pn(
+        100% 0 0 0,
+        0 0 0 100%,
+        0 100% 0 0,
+        0 0 100% 0
+      );
+    </css-doodle>
+  </content>
+</slide>
+
+<slide name="grid">
+  <content data-title="Grid" en>
+    <preview>
+      <result>
+        <css-doodle click-to-update auto-update>
+          :doodle {
+            @grid: 5 / 50vmin;
+          }
+          background: #000;
+          transition: @r(500ms) ease;
+          border-radius: @p(
+            100% 0 0 0,
+            0 100% 0 0,
+            0 0 100% 0,
+            0 0 0 100%
+          );
+        </css-doodle>
+      </result>
+      <textarea code>
+        --pat-1: 100% 0 0 0;
+        --pat-2: 0 100% 0 0;
+        --pat-3: 0 0 100% 0;
+        --pat-4: 0 0 0 100%;
+
+        border-radius: <pick-one>
+      </textarea>
+    </preview>
+  </content>
+</slide>
+
+
+
+<style>
+  [name="css-doodle"] [css-doodle] {
+    text-align: right;
+  }
+  [name="css-doodle"] [css-doodle] span {
+    font-size: .5em;
+    padding-right: 1em;
+    color: #666;
+  }
+</style>
+
+<slide name="css-doodle">
+  <ul focus>
+    <li>
+      <content>
+        <p css-doodle>
+          css-doodle </br><span>.com</span>
+        </p>
+      </content>
+    </li>
+
+    <li>
+      <content data-title="css-doodle" en>
+        <preview>
+          <result>
+            <css-doodle click-to-update auto-update="once"></css-doodle>
+          </result>
+          <textarea code live>
+            :doodle {
+              @grid: 5 / 50vmin;
+            }
+
+            background: #000;
+            transition: @rand(500ms) ease;
+
+            border-radius: @pick(
+              100% 0 0 0,
+              0 100% 0 0,
+              0 0 100% 0,
+              0 0 0 100%
+            );
+          </textarea>
+        </preview>
+      </content>
+
+    </li>
+  </ul>
+</slide>
+
+<style>
+  [name="grid-again"] css-doodle {
+    --basic-grid: (
+      :doodle {
+        @grid: 5 / 50vmin;
+      }
+      border: 2px solid #000;
+      margin: -1px;
+    );
+  }
+</style>
+
+<slide name="grid-again">
+  <content data-title="Grid" en>
+    <preview>
+      <result>
+        <css-doodle></css-doodle>
+      </result>
+      <textarea code live>
+        :doodle {
+          @grid: 5 / 50vmin;
+        }
+
+        border: 1px solid #000;
+        margin: -.5px;
+      </textarea>
+    </preview>
+  </content>
+</slide>
+
+
+<slide name="grid-again">
+  <content data-title="Grid" en>
+    <preview>
+      <result>
+        <css-doodle click-to-update>
+          :doodle {
+            @grid: 1x50 / 50vmin;
+            overflow: hidden;
+            grid-auto-flow: dense;
+            grid-auto-rows: 1vmin;
+            grid-template-columns: repeat(auto-fill, 1vmin);
+            border: 1px solid #000;
+          }
+          :container {
+            transform: scale(1.2);
+          }
+
+          margin: -.5px;
+          grid-row-end: span @ri(2, 12);
+          grid-column-end: span @ri(2, 12);
+          border: 1px solid #000;
+        <css-doodle>
+      </result>
+      <textarea code>
+        :doodle {
+          @grid: 1x50 / 50vmin;
+          grid-auto-flow: dense;
+          /* ... */
+        }
+
+        grid-row-end:
+          span @ri(2, 12);
+
+        grid-column-end:
+          span @ri(2, 12);
+      </textarea>
+    </preview>
+  </content>
+</slide>
+
+<slide name="grid-again">
+  <content data-title="Grid" en>
+    <preview>
+      <result>
+        <css-doodle click-to-update>
+          :doodle {
+            @grid: 1x50 / 50vmin;
+            overflow: hidden;
+            grid-auto-rows: 1vmin;
+            grid-template-columns: repeat(auto-fill, 1vmin);
+            border: 1px solid #223141;
+          }
+          :container {
+            transform: scale(1.2);
+          }
+
+          margin: -.5px;
+          grid-row-end: span @ri(2, 12);
+          grid-column-end: span @ri(2, 12);
+          border: 1px solid #000;
+
+         :after {
+            position: absolute;
+            content: '';
+            border: 1px solid #223141;
+            left: -1px;
+            bottom: -1px;
+            @size: @r(10%, 90%);
+            background: @p(
+              transparent,
+              #FF5A59, #E6BBC2, #509DA6
+            );
+          }
+        <css-doodle>
+      </result>
+      <textarea code>
+        /* ... */
+
+        :after {
+          position: absolute;
+          content: '';
+          border: 1px solid #223141;
+          left: -1px;
+          bottom: -1px;
+          @size: @r(10%, 90%);
+          background: @p(
+            transparent,
+            #FF1489, #FF5A59, #509DA6
+          );
+        }
+      </textarea>
+    </preview>
+  </content>
+</slide>
+
+<slide bg="grid" name="grid-again">
+  <content>
+    <p>
+
+    </p>
+  </content>
+</slide>
+
+
+<slide name="cover-property">
+  <content>
+    <p>
+      Properties
+    </p>
+  </content>
+
+  <css-doodle as-bg>
+    :doodle {
+      @grid: 1 / 100vmax;
+    }
+    :container {
+      transform: rotate(23deg) scale(1.5);
+      background: @m(1000, (
+        linear-gradient(
+          transparent,
+          rgba(0, 0, 0, @r(.4))
+        )
+        @r(100%) @r(100%) / 1px @r(20vmin)
+        no-repeat,
+
+        radial-gradient(
+          rgba(0, 0, 0, @r(.4)) 50%,
+          transparent 0
+        )
+        @r(100%) @r(100%) / @r(20px) @lr()
+        no-repeat
+      )),
+      @m(100, (
+        radial-gradient(
+          transparent calc(50% - .5px),
+          calc(50% - .5px),
+          rgba(0, 0, 0, @r(.2)),
+          calc(50% + .5px),
+          rgba(0, 0, 0, @r(.2)),
+          transparent calc(50% + .5px)
+        )
+        @r(100%) @r(100%) / @r(10vmin) @lr()
+        no-repeat
+      ));
+    }
+  </css-doodle>
+</slide>
+
+<slide name="border-style">
+  <content>
+    <p>
+      border-style
+    </p>
+  </content>
+</slide>
+
+<slide name="border-style">
+  <content data-title="border-style" en>
+    <css-doodle click-to-update auto-update>
+      :doodle {
+        @grid: 1x4 / 90vmin 22.5vmin;
+        transform: translateY(-4vmin);
+        --radius: @p(0, 50%);
+      }
+      margin: 1vmin;
+      border: 10px solid #000;
+      transition: .2s ease;
+      border-radius: var(--radius);
+      border-style: @pn(solid, dashed, dotted, double);
+      :after {
+        content: @lp();
+        position: absolute;
+        font-size: 5vmin;
+        top: calc(100% + 4vmin);
+      }
+    </css-doodle>
+  </content>
+</slide>
+
+<slide name="border-style">
+  <content data-title="border-style" en>
+    <preview>
+      <result>
+      <css-doodle click-to-update></css-doodle>
+      </result>
+      <textarea code live>
+        :doodle {
+          @grid: 10x1 / 50vmin;
+        }
+
+        border-width: 1vmin;
+        border-color: #000;
+        border-top-style: @p(
+          solid, dashed, dotted, double
+        );
+      </textarea>
+    </preview>
+  </content>
+</slide>
+
+<slide name="border-style">
+  <content data-title="border-style" en>
+    <preview>
+      <result>
+      <css-doodle click-to-update></css-doodle>
+      </result>
+      <textarea code live>
+        :doodle {
+          @grid: 30x1 / 100vmin;
+          transform:
+            rotate(30deg)
+            scale(1.5);
+        }
+
+        border-width: 1vmin;
+        border-color: #000;
+        border-top-style: @p(
+          solid, dashed, dotted, double
+        );
+      </textarea>
+    </preview>
+  </content>
+</slide>
+
+<slide name="border-style">
+  <content data-title="border-style" en>
+    <preview>
+      <result>
+      <css-doodle click-to-update></css-doodle>
+      </result>
+      <textarea code live>
+        :doodle {
+          @grid: 15 / 50vmin;
+        }
+
+        --s: 1vmin solid #000;
+
+        @random {
+          border-top: var(--s);
+        }
+
+        @random {
+          border-left: var(--s);
+        }
+      </textarea>
+    </preview>
+  </content>
+</slide>
+
+<slide name="border-style">
+  <content data-title="border-style" en>
+    <preview long>
+      <result>
+      <css-doodle click-to-update></css-doodle>
+      </result>
+      <textarea code live>
+        :doodle {
+          @grid: 30x1 / 50vmin;
+        }
+
+        @place-cell: center;
+        @size: calc(@i() * 10%);
+        transform: rotate(@r(360deg));
+
+        border-radius: 50%;
+        border-style: dotted;
+        border-width: calc(@i() * 1vmin);
+        border-color: @p(
+          #bff4ed, #280f34,
+          #b30753, #f6c667
+        );
+      </textarea>
+    </preview>
+  </content>
+</slide>
+
+<slide name="border-image">
+  <content>
+    <p>
+      border-image
+    </p>
+  </content>
+</slide>
+
+<style>
+  [name="border-image"][black-bg] {
+    background: #2F1C50;
+  }
+</style>
+<slide black-bg name="border-image">
+  <content>
+    <picture>
+      <img src="assets/images/border-image.png "/>
+    </picture>
+  </content>
+</slide>
+
+<style>
+  [long] .code-sample {
+    font-size: 2vw;
+  }
+</style>
+<slide black-bg name="border-image">
+  <content>
+    <preview long>
+      <result>
+        <css-doodle click-to-update></css-doodle>
+      </result>
+      <textarea code live>
+        :doodle {
+          @grid: 50x1 / 50vmin;
+        }
+
+        @place-cell: center;
+        @size: calc(@i() * 2%);
+
+        mix-blend-mode: hard-light;
+        transform:
+          rotate(calc(@i()* 1deg));
+
+        --c: @p(
+          #F5C8E5, #74DCE3,
+          #137EC7, #65D7E1
+        );
+
+        border: 10px solid var(--c);
+        border-image: radial-gradient(
+          var(--c), transparent 60%
+        );
+        border-image-width:
+          calc(@i() / 2);
+      </textarea>
+    </preview>
+  </content>
+</slide>
+
+<slide name="border-image">
+  <content style="--bg-color: #2F1C50" data-title="border-image" en>
+    <picture>
+      <img src="assets/images/border-image-3.png" />
+    </picture>
+  </content>
+</slide>
+
+<slide name="border-image">
+  <content style="--bg-color: #2F1C50" data-title="border-image" en>
+    <picture>
+      <img src="assets/images/border-image-2.png" />
+    </picture>
+  </content>
+</slide>
+
+
+<slide name="gradient">
+  <content>
+    <p>
+      Gradient
+    </p>
+  </content>
+</slide>
+
+<slide name="gradient">
+  <content data-title="Gradient" en>
+    <css-doodle>
+      :doodle {
+        @grid: 1x3 / 90vmin 30vmin;
+        transform: translateY(-4vmin);
+      }
+      --linear: linear-gradient(#000, transparent);
+      --radial: radial-gradient(#000, transparent);
+      --conic: conic-gradient(#000, transparent);
+
+      :before {
+        content: '';
+        @size: 100%;
+        transform: scale(.9);
+        background: @pn(
+          var(--linear), var(--radial), var(--conic)
+        );
+      }
+      :after {
+        content: @pn(linear-, radial-, conic-);
+        position: absolute;
+        font-size: 5vmin;
+        top: calc(100% + 4vmin);
+      }
+    </css-doodle>
+  </content>
+</slide>
+
+<style>
+
+[name="gradient"] css-doodle {
+  --basic: (
+    :doodle {
+      @size: 50vmin;
+    }
+  );
+}
+</style>
+
+<slide name="gradient">
+  <content data-title="Gradient" en>
+    <preview>
+      <result>
+        <css-doodle use="var(--basic)"click-to-update></css-doodle>
+      </result>
+      <textarea code live>
+        background: @m(100, (
+          linear-gradient(
+            #000 50%, transparent 0
+          )
+          @r(100%) @r(100%) /
+          @r(20%) 1vmin
+          no-repeat
+        ));
+      </textarea>
+    </preview>
+  </content>
+</slide>
+
+
+<slide name="gradient">
+  <content data-title="Gradient" en>
+    <preview>
+      <result>
+        <css-doodle use="var(--basic)"click-to-update></css-doodle>
+      </result>
+      <textarea code live>
+        background: @m(100, (
+          radial-gradient(
+            #000 50%, transparent 0
+          )
+          @r(100%) @r(100%) /
+          @r(10%) @lr()
+          no-repeat
+        ));
+      </textarea>
+    </preview>
+  </content>
+</slide>
+
+<style>
+  [name="gradient-demo-a"] css-doodle {
+    --color: @p(#E63946, #F1FAEE, #A8DADC, #457B9D, #1D3557);
+    --position: @r(0%, 100%) @r(0%, 100%);
+
+    --pat-1: (
+      linear-gradient(var(--color), @lp())
+      var(--position) / @r(1px) @r(15%)
+      no-repeat
+    );
+    --pat-2: (
+      linear-gradient(
+      @pick(
+        -270deg, -225deg, -180deg, -135deg, -90deg, -45deg,
+        0deg, 45deg, 90deg, 135deg, 180deg, 225deg, 270deg
+      ),
+      var(--color) 50%, transparent 50%)
+      var(--position) / @r(3%) @lr()
+      no-repeat
+    );
+
+    --pat-3: (
+      linear-gradient(var(--color), @lp())
+      var(--position) / @r(15%) 1px
+      no-repeat
+    );
+
+    --pat-4: (
+      radial-gradient(var(--color), @lp())
+      var(--position) / @r(5%) @lr()
+      no-repeat
+    );
+
+    --pat-5: (
+      radial-gradient(var(--color) 50%, transparent 50%)
+      var(--position) / @r(5%) @lr()
+      no-repeat
+    );
+
+    --pat-6: (
+      conic-gradient(
+        from calc(145deg + @ri(4) * 90deg), var(--color) 0,
+        @lp() 20%,
+        transparent 20%,
+        transparent 50%
+      )
+      var(--position) / @r(5%) @lr()
+      no-repeat
+    );
+
+    --pat-7: (
+      linear-gradient(
+        @p(45deg, -45deg),
+        transparent 0,
+        transparent calc(50% - .2px),
+         var(--color)
+          calc(50% - .5px),
+         @lp()
+          calc(50% + .5px),
+        transparent calc(50% + .2px)
+      )
+      var(--position) / @r(5%) @lr()
+      no-repeat
+    );
+
+    --rule: (
+      :doodle {
+        @grid: 1 / 100vmax;
+        position: absolute;
+      }
+      background-blend-mode: color-burn;
+      background:
+        @m(80, var(--pat-1)),
+        @m(80, var(--pat-2)),
+        @m(80, var(--pat-3)),
+        @m(80, var(--pat-4)),
+        @m(80, var(--pat-5)),
+        @m(80, var(--pat-6)),
+        @m(80, var(--pat-7));
+    );
+  }
+</style>
+
+
+<slide name="gradient-demo-a">
+  <content>
+    <css-doodle use="var(--rule)" click-to-update></css-doodle>
+  </content>
+</slide>
+
+<style>
+  [name="gradient-demo-b"] .code-sample {
+    font-size: 90%;
+  }
+
+</style>
+
+<slide name="gradient-demo-b">
+  <content>
+    <preview long>
+      <result>
+        <css-doodle click-to-update></css-doodle>
+      </result>
+
+      <textarea code live>
+        :doodle {
+          @grid: 20x1 / 60vmin;
+        }
+
+        @place-cell: center;
+        @size: 1000%;
+
+        background: @multi(500, (
+          repeating-radial-gradient(
+            @p(#E63946, #F1FAEE, #A8DADC,
+              #457B9D, #1D3557) @r(25%),
+            transparent
+          )
+          @r(0%, 100%) @r(0%, 100%) /
+          @r(5%, 8%) @lr()
+          no-repeat
+        ));
+
+        mix-blend-mode: overlay;
+        transform: translate(
+          @r(-100%, 100%)
+        );
+      </textarea>
+    </preview>
+ </content>
+</slide>
+
+<style>
+  [name="gradient-compose"] css-doodle {
+    --basic: (
+      :doodle {
+        @size: 120vmin;
+        position: absolute;
+      }
+    );
+  }
+</style>
+
+<slide name="gradient-compose">
+  <content data-title="Gradient" en>
+    <preview>
+      <result>
+        <css-doodle use="var(--basic)" click-to-update></css-doodle>
+      </result>
+      <textarea code live>
+        background: @m(1, (
+          linear-gradient(
+            @r(360deg),
+            @m(2, @p(
+              #bff4ed, #280f34,
+              #b30753, #f6c667
+            ))
+          )
+        ));
+
+        background-blend-mode:
+          difference;
+      </textarea>
+    </preview>
+  </content>
+</slide>
+
+<style>
+  [name="gradient-compose"] css-doodle {
+    --diamond: (
+      :doodle {
+        @grid: 1 / 100vmin;
+        position: absolute;
+      }
+    );
+  }
+</style>
+
+<slide name="gradient-compose">
+  <content data-title="Gradient" en>
+    <preview long>
+      <result>
+        <css-doodle click-to-update use="var(--diamond)"></css-doodle>
+      </result>
+      <textarea code live>
+        background: @multi(100, (
+          repeating-conic-gradient(
+            from @pn(
+              -45deg, 45deg, 60deg,
+              90deg, -90deg
+            ),
+            @multi(50, (
+              magenta, blue,
+              purple, yellow
+            ))
+          )
+          @pn(0%, 100%) 100% /
+          400vmax 400vmax
+          no-repeat
+        ));
+
+        filter: hue-rotate(180deg);
+        background-blend-mode: difference;
+      </textarea>
+    </preview>
+  </content>
+</slide>
+
+
+<slide bg="gradient" name="gradient-compose">
+  <content></content>
+</slide>
+
+<slide bg="polygon" name="gradient-compose">
+  <content></content>
+</slide>
+
+<slide name="box-shadow">
+  <content>
+    <p>
+      box-shadow
+    </p>
+  </content>
+</slide>
+
+<slide name="box-shadow">
+  <content data-title="box-shadow" en>
+    <css-doodle>
+      :doodle {
+        @grid: 1 / 30vmin;
+      }
+      transform: translateX(-50%);
+      background: #000;
+      border-radius: 50%;
+      box-shadow:
+        1em 0 0 #666,
+        2em 0 0 #eee;
+    </css-doodle>
+  </content>
+</slide>
+
+
+<style>
+  [name="box-shadow"][custom-bg] {
+    background: #3A0087;
+  }
+  [name="box-shadow"][custom-bg] .code-sample {
+    z-index: 10;
+  }
+  [name="box-shadow"] [full] css-doodle {
+    position: absolute;
+  }
+</style>
+
+<slide custom-bg name="box-shadow">
+  <content>
+    <preview long>
+      <result full>
+        <css-doodle click-to-update></css-doodle>
+      </result>
+      <textarea code live>
+        :doodle {
+          @grid: 6 / 120vmin;
+          overflow: hidden;
+          perspective: 50vmin;
+        }
+
+        border-radius: 50%;
+        mix-blend-mode: overlay;
+        transform: rotateY(
+          @r(-360deg, 360deg)
+        );
+
+        box-shadow: @m(2, (
+          @r(-30vmin, 30vmin)
+          @r(-30vmin, 30vmin)
+          @r(5vmin, 10vmin)
+          @p(#ff5ab0, #f7fed4,
+            #4df4ff, #1bb5ec)
+        ));
+      </textarea>
+    </preview>
+  </content>
+</slide>
+
+<style>
+  .box-shadow-container css-doodle {
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+  [name="box-shadow"] css-doodle {
+    --cloud: (
+      :doodle {
+        @grid: 1 / 1px;
+      }
+      transform: translate(
+        -100%, -100%
+      );
+      border-radius: 50%;
+      filter: contrast(5);
+      box-shadow: @multi(100, (
+        @r(100vw) @r(100vh)
+        @r(20vmin, 40vmin) @r(20vmin)
+        @p(#11cbd766, #fa465966)
+      ));
+    );
+  }
+</style>
+<slide name="box-shadow">
+  <content class="box-shadow-container">
+    <preview>
+      <result>
+        <css-doodle click-to-update use="var(--cloud)"></css-doodle>
+      </result>
+      <textarea code live>
+        filter: contrast(5);
+
+        box-shadow: @multi(100, (
+          @r(100vw) @r(100vh)
+          @r(10vmin, 20vmin) @r(20vmin)
+          @p(#11cbd766, #fa465966)
+        ));
+      </textarea>
+    </preview>
+  </content>
+</slide>
+
+
+<slide name="box-shadow">
+  <content class="box-shadow-container">
+    <result>
+      <css-doodle click-to-update use="var(--cloud)"></css-doodle>
+    </result>
+  </content>
+</slide>
+
+ <script>
+  (function() {
+    let containers = document.querySelectorAll('.box-shadow-container');
+    [].forEach.call(containers, container => {
+      container.addEventListener('click', e => {
+        let doodle = e.target.querySelector('css-doodle');
+        if (doodle) {
+          doodle.update();
+        }
+      })
+    });
+  }());
+</script>
+
+<style>
+  [name="text-shadow"] .cover-text {
+    text-shadow:
+      -.8em -.8em 0 #ddd,
+      .8em .8em 0 #ddd;
+  }
+</style>
+<slide name="text-shadow">
+  <content>
+    <p class="cover-text">
+      text-shadow
+    </p>
+  </content>
+</slide>
+
+<style>
+  [name="text-shadow"] css-doodle {
+    --shadow: (
+      :doodle {
+        @grid: 12 / 100vmin;
+        position: absolute;
+        overflow: hidden;
+      }
+      transform: translate(
+        @r(-100%, 100%),
+        @r(-100%, 100%)
+      );
+    );
+  }
+</style>
+
+<slide name="text-shadow">
+  <content>
+    <preview>
+      <result>
+      <css-doodle click-to-update use="var(--shadow)"></css-doodle>
+      </result>
+      <textarea code live>
+        --rgb: 255, 5, 146;
+
+        ::after {
+          content: '.';
+          font-size: @r(6em);
+          color: rgba(var(--rgb));
+
+          text-shadow: @m(20, (
+            calc(@n() * -2px)
+            calc(@n() * 2px) 0
+            rgba(
+              var(--rgb),
+              calc(.1 - .1 / 20 * @n())
+            )
+          ));
+        }
+      </textarea>
+    </preview>
+  </content>
+</slide>
+
+<slide name="text-shadow">
+  <content data-title="text-shadow" en>
+    <css-doodle click-to-update>
+      :doodle {
+        @grid: 8 / 70vmin;
+        overflow: hidden;
+        background: #fff;
+      }
+
+      :after {
+        transform:
+          rotate(@r(-45deg, 45deg))
+          translate(@r(-50%, 50%), @r(-50%, 50%));
+
+        position: absolute;
+        content: \@hex(@r(0x2F00, 0x2F5F));
+        xcontent: @pd([A-Z]);
+        font-size: @r(5vmin, 30vmin);
+        --rgb: @p(
+          (53, 35, 75),
+          (92, 59, 111),
+          (216, 76, 115),
+          (255, 132, 132)
+        );
+        color: rgb(var(--rgb));
+        font-weight: bold;
+        text-stroke: @r(2px) #fff;
+        xcolor: transparent;
+        text-shadow:
+          @multi(10, (
+            calc(@n() * 1px) calc(@n() * 1px) 0 @pn(currentColor, #fff)
+          )),
+          @multi(10, (
+            calc((@n() + 10) * 1px) calc((@n() + 10) * 1px) 0
+            @pn(rgba(var(--rgb), .1), #fff)
+          ))
+      }
+      </css-doodle>
+  </content>
+</slide>
+
+
+<slide name="text-shadow">
+  <ul focus>
+    <li>
+      <content bg="text-shadow-1"></content>
+    </li>
+    <li>
+      <content bg="text-shadow-2"></content>
+    </li>
+  </ul>
+</slide>
+
+
+<slide name="text-shadow">
+  <content>
+    <preview>
+      <result>
+      <css-doodle click-to-update></css-doodle>
+      </result>
+      <textarea code live>
+        ::after {
+          content: ')';
+          font-size: 20vmin;
+          transform:
+            rotate(60deg) skew(60deg);
+
+          text-shadow: @multi(20, (
+            @r(-100px, 100px)
+            @r(-100px, 100px)
+            @r(10px) currentColor
+          ));
+        }
+      </textarea>
+    </preview>
+  </content>
+</slide>
+
+
+<slide name="text-shadow">
+  <content bg="text-shadow-4">
+  </content>
+</slide>
+
+<style>
+  [name="wavy"] [sec-title] {
+    font-size: .8em;
+  }
+  [name="wavy"] [sec-wavy] {
+    text-decoration: underline wavy #FF5D88;
+  }
+</style>
+
+<slide name="wavy">
+  <content>
+    <p sec-title>
+      text-decoration
+    </p>
+  </content>
+</slide>
+
+
+<slide name="wavy">
+  <content data-title="decoration" en>
+    <p sec-wavy>
+      wavy
+    </p>
+  </content>
+</slide>
+
+<slide name="wavy">
+  <content data-title="decoration" en>
+    <preview>
+      <result>
+      <css-doodle click-to-update></css-doodle>
+      </result>
+      <textarea code live>
+        transform: translateY(-50%);
+
+        ::after {
+          content: @repeat(10, _);
+          color: transparent;
+          writing-mode: vertical-lr;
+          font-size: 8vmin;
+          text-decoration:
+            line-through wavy #000;
+        }
+      </textarea>
+    </preview>
+  </content>
+</slide>
+
+
+<style>
+  [name="wavy"] [wavy-live] css-doodle {
+    --wavy: (
+      position: absolute;
+      left: 50%; top: 50%;
+      @size: 50% 1px;
+
+      :after {
+        content: @repeat(10, _);
+        font-size: 4vmin;
+        background: transparent;
+        position: absolute;
+        left: 0%;
+        color: transparent;
+        text-decoration: line-through @p(wavy) #000;
+        transform-style: preserve-3d;
+        transform: rotateX(@pn(0, -180deg));
+      }
+    );
+  }
+
+</style>
+
+<slide name="wavy">
+  <content data-title="decoration" en>
+    <preview>
+      <result wavy-live>
+        <css-doodle click-to-update use="var(--wavy)"></css-doodle>
+      </result>
+      <textarea code live>
+        :doodle {
+          @grid: 10x1 / 80vmin;
+        }
+
+        transform-origin: 0 center;
+        transform: rotate(
+          calc(1turn / @size() * @i())
+        );
+
+        /* ... */
+      </textarea>
+    </preview>
+  </content>
+</slide>
+
+<slide name="wavy">
+  <content data-title="decoration" en>
+    <preview>
+      <result wavy-live>
+        <css-doodle click-to-update use="var(--wavy)"></css-doodle>
+      </result>
+      <textarea code live>
+        :doodle {
+          @grid: 20x1 / 80vmin;
+          perspective: 80;
+        }
+
+        transform-origin: 0 center;
+        transform: rotate(
+          calc(1turn / @size() * @i())
+        ) rotateY(-60deg);
+
+        ::after {
+          content: @repeat(10, '.');
+          color: #000;
+        }
+      </textarea>
+    </preview>
+  </content>
+</slide>
+
+
+<slide name="wavy">
+  <content style="--bg-color: #271034">
+    <css-doodle>
+      :doodle {
+        @grid: 20x1 / 80vmin;
+      }
+      :container {
+        perspective: 30px;
+      }
+
+      position: absolute;
+      left: 50%; top: 50%;
+      @size: 50% 1px;
+      transform-origin: 0 center;
+
+      transform: rotate(
+        calc(360deg / @size() * @i())
+      ) rotateY(-54deg);
+      --r: @pn(0, -180deg);
+      :after {
+        content: @repeat(2, ____----____----____----____----);
+        font-size: 3vmin;
+        background: transparent;
+        position: absolute;
+        left: 0%;
+        color: transparent;
+        text-decoration: line-through @p(wavy)
+          @pd(#feffdf, #ffe79a, #FFA952, #EF5A5A);
+        transform-style: preserve-3d;
+        transform: rotateX(var(--r)) translateX(-5%);
+      }
+      mix-blend-mode: overlay;
+    </css-doodle>
+  </content>
+</slide>
+
+<style>
+  [name="wavy"][animation] css-doodle {
+    --start-animate: (
+      :container {
+        animation: p 16s cubic-bezier(0.55, 0.085, 0.68, 0.53);
+        animation-direction: alternate;
+        animation-fill-mode: both;
+      }
+      :after {
+        animation: r @r(3000ms) linear;
+        animation-delay: 13s;
+      }
+    );
+    --stop-animate: (
+      :container {
+        animation: none;
+      }
+      :after {
+        animation: none;
+        animation-delay: 0;
+      }
+    )
+  }
+  [name="wavy"][animation] button {
+    z-index: 10;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: red;
+    padding: 5vmin;
+  }
+</style>
+
+<slide animation name="wavy">
+  <content style="--bg-color: #271034">
+    <css-doodle>
+      :doodle {
+        @grid: 24x1 / 80vmin;
+      }
+      :container {
+        perspective: 50px;
+        animation-direction: alternate;
+        animation-fill-mode: both;
+      }
+
+      position: absolute;
+      left: 50%; top: 50%;
+      @size: 50% 1px;
+      transform-origin: 0 center;
+
+      transform: rotate(
+        calc(360deg / @size() * @i())
+      ) rotateY(-54deg);
+
+      --r: @pn(0, -180deg);
+
+      :after {
+        content: @repeat(3, ____----____----____----____----);
+        font-size: 2vmin;
+        background: transparent;
+        position: absolute;
+        left: 0%;
+        color: transparent;
+        text-decoration: line-through @p(wavy)
+          @pd(#ff008b, #faf7e6, #FFF8A0, #73DBC4);
+        transform-style: preserve-3d;
+        transform: rotateX(var(--r)) translateX(0%);
+        will-change: transform;
+        animation-fill-mode: both;
+      }
+
+      mix-blend-mode: overlay;
+      @keyframes p {
+        from { perspective: 50px; }
+        to { perspective: 1px; }
+      }
+      @keyframes r {
+         from { opacity: 1; }
+        to { opacity: 0; }
+      }
+    </css-doodle>
+  </content>
+  <script>
+    (function() {
+      let doodle = document.querySelector('[name="wavy"][animation] css-doodle');
+      let playing = false;
+      function startAnimation() {
+        doodle.use = 'var(--start-animate)';
+      }
+      function stopAnimation() {
+        doodle.use = 'var(--stop-animate)';
+      }
+      doodle.addEventListener('click', e => {
+        if (!playing) {
+          playing = true;
+          startAnimation();
+        } else {
+          stopAnimation();
+          playing = false;
+        }
+      });
+    }());
+  </script>
+</slide>
+
+
+<slide name="svg">
+  <content>
+    <p>
+      SVG filters
+    </p>
+  </content>
+</slide>
+
+
+<style>
+  [name="svg"] [code-block] {
+    background: #272a36;
+    width: 100vw;
+    height: 100vh;
+  }
+  [name="svg"] [code-block]:after {
+    color: rgba(255, 255, 255, .02);
+  }
+  [name="svg"] .code-sample {
+    font-size: 2.5vw;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1.3;
+  }
+</style>
+
+<slide name="svg">
+  <content code-block data-title="SVG filters" en>
+    <textarea code="xml">
+      <filter>
+        <feTurbulence
+          type="fractalNoise"
+          baseFrequency=".005"
+          numOctaves="1"
+          seed="100"
+        />
+        <feDisplacementMap
+          in="SourceGraphic"
+          scale="100"
+        />
+      </filter>
+    </textarea>
+  </content>
+</slide>
+
+
+<style>
+  [name="svg"] css-doodle {
+    --color: @pd(#F6F6E9, #3a0088, #930077, #e61c5d, #EFC3E6);
+    --basic: (
+       :doodle {
+        @grid: 1 / 100vmin;
+        position: absolute;
+        overflow:hidden;
+      }
+      :container {
+        @size: 150%;
+        left: 50%; top: 50%;
+        transform: translate(-50%, -50%);
+      }
+      background: conic-gradient(
+        @m(20, var(--color))
+      );
+    );
+  }
+</style>
+
+<slide name="svg">
+  <content>
+    <preview>
+      <result>
+        <css-doodle click-to-update use="var(--basic)"></css-doodle>
+      </result>
+      <textarea code live>
+         xfilter: @svg-filter(<svg>
+           <filter>
+             <feTurbulence
+               type="fractalNoise"
+               seed="100"
+               numOctaves="1"
+               baseFrequency=".006"
+             />
+             <feDisplacementMap
+               in="SourceGraphic"
+               scale="100"
+             />
+           </filter>
+          </svg>);
+      </textarea>
+    </preview>
+  </content>
+</slide>
+
+<slide name="svg">
+  <ul focus>
+    <li>
+      <content>
+        <picture>
+          <img src="assets/images/svg-gradient-2.png" />
+        </figure>
+      </content>
+    </li>
+    <li>
+      <content>
+        <picture>
+          <img src="assets/images/svg-gradient.png" />
+        </figure>
+      </content>
+    </li>
+  </ul>
+</slide>
+
+
+<slide bg="cloud" name="svg-clouds">
+  <content>
+    <p>
+      Clouds
+    </p>
+  </content>
+</slide>
+
+<style>
+  [name="svg-clouds"] css-doodle {
+    position: absolute;
+  }
+</style>
+
+<slide name="svg-clouds">
+  <content>
+    <preview long>
+      <result>
+        <css-doodle click-to-update></css-doodle>
+      </result>
+      <textarea code live>
+        :doodle {
+          @grid: 1 / 100vmin;
+
+          filter: @svg-filter(<svg>
+            <filter>
+              <feTurbulence
+                type="fractalNoise"
+                seed="@r(1000)"
+                baseFrequency=".007"
+                numOctaves="10" />
+              <feDisplacementMap
+                in="SourceGraphic"
+                scale="240"
+              />
+            </filter>
+          </svg>)
+        }
+
+        box-shadow: @m(100, (
+          @r(100vw) @r(100vh)
+          @r(10vmin, 20vmin) @r(20vmin)
+          @p(#fff, #3F1282)
+        ));
+
+        @size: 1px;
+      </textarea>
+    </preview>
+  </content>
+</slide>
+
+<slide bg="marble" name="svg-marble">
+  <content>
+
+  </content>
+</slide>
+
+
+<slide name="animation">
+  <content>
+    <p>
+      Animation
+    </p>
+  </content>
+</slide>
+
+<style>
+  [name="animation"] [as-bg] {
+    position: static;
+  }
+</style>
+
+<slide name="animation">
+  <content style="--bg-color: #000">
+    <css-doodle as-bg>
+      :doodle {
+        @grid: 50x1 / 50vmin;
+        perspective: 23vmin;
+      }
+
+      background: @multi(@r(200, 240), (
+        radial-gradient(
+          @p(#00b8a9, #f8f3d4, #f6416c, #ffde7d) 15%,
+          transparent 50%
+        ) @r(100%) @r(100%) / @r(1%, 3%, .1) @lr() no-repeat
+      ));
+
+      @size: 80%;
+      @place-cell: center;
+
+      border-radius: 50%;
+      transform-style: preserve-3d;
+      animation: scale-up 20s linear infinite;
+      animation-delay: calc(@i() * -.4s);
+
+      @keyframes scale-up {
+        0% {
+          opacity: 0;
+          transform: translate3d(0, 0, 0) rotate(0);
+        }
+        10% {
+          opacity: 1;
+        }
+        95% {
+          transform:
+            translate3d(0, 0, @r(50vmin, 55vmin))
+            rotate(@r(-360deg, 360deg));
+        }
+        100% {
+          opacity: 0;
+          transform: translate3d(0, 0, 1vmin);
+        }
+      }
+    </css-doodle>
+   </content>
+</slide>
+
+
+
+<style>
+  [name="animation"] [long] .code-sample {
+    font-size: 1.5vw;
+  }
+  [name="animation"] css-doodle {
+    --lines: (
+      :doodle {
+        @grid: 1x15 / 100vmin;
+        background: #000;
+      }
+
+      position: absolute;
+      @size: 100%;
+
+      background: @m(100, (
+        radial-gradient(#fff 50%, transparent 0)
+        @r(0, 100%) @r(0, 100%) / 1px @r(100px)
+        no-repeat
+      ));
+
+      animation: f @r(5s, 10s) linear infinite;
+      animation-delay: -@r(10s);
+
+      @keyframes f {
+        from {
+          transform: translateY(-100%);
+        }
+        to {
+          transform: translateY(100%);
+        }
+      }
+    );
+  }
+</style>
+
+<slide name="animation">
+  <content>
+    <preview long>
+      <result>
+      <css-doodle click-to-update></css-doodle>
+      </result>
+      <textarea code live>
+        :doodle {
+          @grid: 1x15 / 100vmin;
+          background: #000;
+        }
+
+        position: absolute;
+        @size: 100%;
+
+        background: @m(100, (
+          linear-gradient(
+            #fff 50%, transparent 0
+          )
+          @r(0, 100%) @r(0, 100%) /
+          1px @r(100px)
+          no-repeat
+        ));
+
+        will-change: transform;
+        animation: f @r(5s, 10s)
+          linear -@r(10s) infinite;
+
+        @keyframes f {
+          from {
+            transform: translateY(-100%);
+          }
+          to {
+            transform: translateY(100%);
+          }
+        }
+      </textarea>
+    </preview>
+  </content>
+</slide>
+
+<slide name="animation">
+  <content>
+    <preview>
+      <result>
+        <css-doodle click-to-update use="var(--lines)"></css-doodle>
+      </result>
+      <textarea code live>
+        /* with SVG filters */
+
+        :container {
+          filter: @svg-filter(<svg>
+            <filter>
+              <feTurbulence
+                type="fractalNoise"
+                seed="442"
+                baseFrequency=".002"
+                numOctaves="1" />
+              <feDisplacementMap
+                in="SourceGraphic"
+                scale="200"
+              />
+            </filter>
+          </svg>);
+        }
+      </textarea>
+    </preview>
+  </content>
+</slide>
+
+<slide name="animation">
+  <content>
+    <preview long>
+      <result>
+      <css-doodle click-to-update use="var(--lines)"></css-doodle>
+      </result>
+      <textarea code live>
+        /* with SVG filters */
+
+        :doodle {
+          background: linear-gradient(
+            rebeccapurple, cyan
+          );
+        }
+
+        :container {
+          filter: @svg-filter(<svg>
+            <filter>
+              <feGaussianBlur
+                in="SourceGraphic"
+                stdDeviation="5 100"
+                result="blur"
+              />
+            </filter>
+          </svg>);
+        }
+
+        background: @m(100, (
+          radial-gradient(
+            #fff 50%, transparent 0
+          )
+          @r(0, 100%) @r(0, 100%) /
+          @r(50px) @r(100px)
+          no-repeat
+        ));
+      </textarea>
+    </preview>
+  </content>
+</slide>
+
+
+<slide name="fractal">
+  <content>
+    <p>
+      CSS Fractal
+    </p>
+  </content>
+</slide>
+
+<style>
+  [name="fractal"] [em] span > span {
+    font-size: .618em;
+  }
+</style>
+
+<slide name="fractal">
+  <content>
+    <p em>
+      <span>
+        em
+        <span>
+          em
+            <span>
+              em
+              <span>
+                em
+                <span>
+                  em
+                  <span>
+                    em
+                  </span>
+                </span>
+              </span>
+            </span>
+        </span>
+      </span>
+    </p>
+  </content>
+</slide>
+
+
+<slide name="fractal">
+  <content>
+    <p>
+      DOM tree
+    </p>
+  </content>
+</slide>
+
+
+<style>
+  [name="fractal"] [tree] css-doodle {
+    position: absolute;
+    bottom: 0;
+  }
+</style>
+
+<slide name="fractal">
+  <content>
+    <preview tree>
+      <result>
+        <css-doodle click-to-update>
+          :doodle {
+            @grid: 1x2x9 / 30vmin;
+          }
+          :container {
+            @size: 1px 70%;
+            background: #000;
+            margin: auto;
+          }
+
+          @size: 1px 70%;
+          background: #000;
+
+          position: absolute;
+          bottom: 100%;
+
+          transform-origin: 50% 100%;
+          transform:
+            rotate(@pn(-23deg, 15deg));
+        </css-doodle>
+      </result>
+      <textarea code>
+        div {
+          background: #000;
+          width: 1px;
+          height: 70%;
+          position: absolute;
+          bottom: 100%;
+          transform-origin: 50% 100%;
+        }
+
+        div > div:first-child {
+          tranform: rotate(-23deg);
+        }
+
+        div > div:last-child {
+          tranform: rotate(15deg);
+        }
+      </textarea>
+    </preview>
+  </content>
+</slide>
+
+
+<slide name="fractal">
+  <content>
+    <preview>
+      <result>
+      <css-doodle click-to-update></css-doodle>
+      </result>
+      <textarea code live>
+        :doodle {
+          @grid: 1x3x6 / 60vmin;
+        }
+
+        @size: 50%;
+        position: absolute;
+        bottom: 0; left: @pn(50%, 0);
+        clip-path: polygon(
+          50% 0, 100% 100%, 0 100%
+        );
+
+        :first-child {
+          top: 0;
+          transform: translateX(-50%);
+        }
+
+        :empty {
+          background: #000;
+        }
+      </textarea>
+    </preview>
+  </content>
+</slide>
+
+<slide name="fractal">
+  <content style="--bg-color: #000">
+    <picture>
+      <img src="assets/images/fractal.png" />
+    </picture>
+  </content>
+</slide>
+
+
+<slide name="houdini">
+  <content>
+    <p>
+      CSS Houdini
+    </p>
+  </content>
+</slide>
+
+
+<style>
+  [name="houdini"] [code-block] {
+    background: #272a36;
+    width: 100vw;
+    height: 100vh;
+  }
+  [name="houdini"] [code-block] .code-sample {
+    font-size: 3vw;
+  }
+</style>
+<slide name="houdini">
+  <content code-block>
+    <textarea code>
+      .el {
+
+        background: paint(my-paint);
+
+        --split: 30;
+        --stroke-width: 2;
+        --color: red;
+
+      }
+    </textarea>
+  </content>
+</slide>
+
+<slide name="houdini">
+  <content code-block>
+    <textarea code>
+      --split: (
+
+        /* Could be anything */
+
+      );
+    </textarea>
+  </content>
+</slide>
+
+<slide name="houdini">
+  <content code-block>
+    <textarea code>
+      .el {
+
+        background: paint(my-paint);
+
+        --split: 50;
+
+        /* Write JS in CSS */
+        --paint: (ctx, geom) = {
+          let split = var(--split);
+          for (let i = 0; i < split; ++i) {
+
+          }
+        }
+
+      }
+    </textarea>
+  </content>
+</slide>
+
+<slide name="houdini">
+  <content>
+    <p>
+      Little language
+    </p>
+  </content>
+</slide>
+
+
+<slide name="houdini">
+  <content code-block>
+    <textarea code>
+      .el {
+
+        background: paint(my-paint);
+
+        --L-system: (
+          variables: X Y
+          constants: F + −
+          start: FX
+          rules: (X => X+YF+), (Y => −FX−Y)
+          angle: 90
+        );
+
+      }
+    </textarea>
+  </content>
+</slide>
+
+
+<slide name="houdini">
+  <content code-block>
+    <textarea code>
+      .el {
+
+        background: paint(logo-lang);
+
+        --turtle: (
+           setwidth 10
+           setcolor 4
+           rt 18 fd 50
+           repeat 5 [rt 144 fd 50 lt 72 fd 50]
+        );
+
+      }
+    </textarea>
+  </content>
+</slide>
+
+<slide name="final">
+  <content>
+    <p>
+      Never stop learning
+    </p>
+  </content>
+</slide>
+
+<slide bg="final" name="final">
+  <content>
+    <p>
+      Thank you
+    </p>
+  </content>
+</slide>
+

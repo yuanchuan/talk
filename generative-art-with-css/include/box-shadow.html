@@ -1,0 +1,133 @@
+<slide>
+  <content>
+    <p>
+      box-shadow
+    </p>
+  </content>
+</slide>
+
+<slide>
+  <content data-title="box-shadow" en>
+    <css-doodle>
+      :doodle {
+        @grid: 1 / 30vmin;
+      }
+      transform: translateX(-50%);
+      background: #000;
+      border-radius: 50%;
+      box-shadow:
+        1em 0 0 #666,
+        2em 0 0 #eee;
+    </css-doodle>
+  </content>
+</slide>
+
+
+<style>
+  &[custom-bg] {
+    background: #3A0087;
+  }
+  &[custom-bg] .code-sample {
+    z-index: 10;
+  }
+  & [full] css-doodle {
+    position: absolute;
+  }
+</style>
+
+<slide custom-bg>
+  <content>
+    <preview long>
+      <result full>
+        <css-doodle click-to-update></css-doodle>
+      </result>
+      <textarea code live>
+        :doodle {
+          @grid: 6 / 120vmin;
+          overflow: hidden;
+          perspective: 50vmin;
+        }
+
+        border-radius: 50%;
+        mix-blend-mode: overlay;
+        transform: rotateY(
+          @r(-360deg, 360deg)
+        );
+
+        box-shadow: @m(2, (
+          @r(-30vmin, 30vmin)
+          @r(-30vmin, 30vmin)
+          @r(5vmin, 10vmin)
+          @p(#ff5ab0, #f7fed4,
+            #4df4ff, #1bb5ec)
+        ));
+      </textarea>
+    </preview>
+  </content>
+</slide>
+
+<style>
+  .box-shadow-container css-doodle {
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+  & css-doodle {
+    --cloud: (
+      :doodle {
+        @grid: 1 / 1px;
+      }
+      transform: translate(
+        -100%, -100%
+      );
+      border-radius: 50%;
+      filter: contrast(5);
+      box-shadow: @multi(100, (
+        @r(100vw) @r(100vh)
+        @r(20vmin, 40vmin) @r(20vmin)
+        @p(#11cbd766, #fa465966)
+      ));
+    );
+  }
+</style>
+<slide>
+  <content class="box-shadow-container">
+    <preview>
+      <result>
+        <css-doodle click-to-update use="var(--cloud)"></css-doodle>
+      </result>
+      <textarea code live>
+        filter: contrast(5);
+
+        box-shadow: @multi(100, (
+          @r(100vw) @r(100vh)
+          @r(10vmin, 20vmin) @r(20vmin)
+          @p(#11cbd766, #fa465966)
+        ));
+      </textarea>
+    </preview>
+  </content>
+</slide>
+
+
+<slide>
+  <content class="box-shadow-container">
+    <result>
+      <css-doodle click-to-update use="var(--cloud)"></css-doodle>
+    </result>
+  </content>
+</slide>
+
+ <script>
+  (function() {
+    let containers = document.querySelectorAll('.box-shadow-container');
+    [].forEach.call(containers, container => {
+      container.addEventListener('click', e => {
+        let doodle = e.target.querySelector('css-doodle');
+        if (doodle) {
+          doodle.update();
+        }
+      })
+    });
+  }());
+</script>

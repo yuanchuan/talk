@@ -1,0 +1,150 @@
+<style>
+  & css-doodle {
+    --triangle: (
+      :doodle {
+        @size: 50vmin;
+      }
+    );
+  }
+  & result:after {
+    content: '三角形';
+    position: absolute;
+    bottom: -7.5vw;
+    font-size: 15vw;
+    font-weight: bold;
+    color: rgba(0, 0, 0, .05);
+  }
+  #border-triangle {
+    width: 50vmin;
+    height: 50vmin;
+    position: relative;
+  }
+  #border-triangle:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0);
+  }
+  #border-triangle > div {
+    width: 0; height: 0;
+    border-width: 25vmin;
+    border-color: #eee #f5f5f5;
+    border-style: solid;
+    border-bottom-color: #000;
+    z-index: -1;
+    transition: all .5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+  #border-triangle[onhover] > div {
+    transition: none;
+    border-left-width: calc(var(--left) * 1px);
+    border-top-width: calc(var(--top) * 1px);
+    border-bottom-width: calc(var(--bottom) * 1px);
+    border-right-width: calc(var(--right) * 1px);
+  }
+</style>
+
+<slide>
+  <content>
+    <preview>
+      <result>
+        <div id="border-triangle">
+          <div></div>
+        </div>
+      </result>
+      <textarea code>
+        width: 0; height: 0;
+
+        border-style: solid;
+        border-color: transparent;
+        border-width: <size>;
+        border-bottom-color: #000;
+      </textarea>
+    </preview>
+  </content>
+  <script>
+    (function() {
+      const box = document.getElementById('border-triangle');
+      box.addEventListener('mouseleave', e => {
+        box.removeAttribute('onhover');
+      });
+      box.addEventListener('mousemove', e => {
+        box.setAttribute('onhover', true);
+        var size = parseInt(getComputedStyle(box).width);
+        var x = e.offsetX;
+        var y = e.offsetY;
+        box.style.setProperty('--top', y);
+        box.style.setProperty('--right', size - x);
+        box.style.setProperty('--bottom', size - y);
+        box.style.setProperty('--left', x);
+      });
+    }());
+  </script>
+</slide>
+
+<slide>
+  <content>
+    <preview>
+      <result>
+        <css-doodle use="var(--triangle)">
+          :doodle {
+            @grid: 2 / 50vmin;
+            gap: 2vmin;
+          }
+          background: linear-gradient(
+            @pn(45deg, -45deg, -135deg, 135deg),
+            #000 50%, transparent 0
+          );
+          :after {
+            content:@pn(45, -45, -135, 135);
+            transform:
+              rotate(@pn(45deg, -45deg))
+              translate(@pn(
+                '0, -80%',
+                '0, -80%',
+                '0, 60%',
+                '0, 60%'
+              ))
+          }
+        </css-doodle>
+      </result>
+      <textarea code>
+        background: linear-gradient(
+          <deg>, #000 50%,
+          transparent 0
+        );
+      </textarea>
+    </preview>
+  </content>
+</slide>
+
+<slide>
+  <content>
+    <preview>
+      <result>
+        <css-doodle use="var(--triangle)" auto-update>
+          :doodle {
+            @grid: 2 / 50vmin;
+            gap: 1vmin;
+          }
+          background: #000;
+          transform: rotate(@r(360deg));
+          transition: clip-path @r(500ms) ease;
+          clip-path: polygon(
+            @r(100%) 0, 100% @r(100%), 0 @r(100%)
+          );
+        </css-doodle>
+      </result>
+      <textarea code>
+        clip-path: polygon(
+          <x y>,
+          <x y>,
+          <x y>
+        );
+      </textarea>
+    </preview>
+  </content>
+</slide>
+

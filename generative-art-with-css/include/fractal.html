@@ -1,0 +1,142 @@
+<slide>
+  <content>
+    <p>
+      CSS Fractal
+    </p>
+  </content>
+</slide>
+
+<style>
+  & [em] span > span {
+    font-size: .618em;
+  }
+</style>
+
+<slide>
+  <content>
+    <p em>
+      <span>
+        em
+        <span>
+          em
+            <span>
+              em
+              <span>
+                em
+                <span>
+                  em
+                  <span>
+                    em
+                  </span>
+                </span>
+              </span>
+            </span>
+        </span>
+      </span>
+    </p>
+  </content>
+</slide>
+
+
+<slide>
+  <content>
+    <p>
+      DOM tree
+    </p>
+  </content>
+</slide>
+
+
+<style>
+  & [tree] css-doodle {
+    position: absolute;
+    bottom: 0;
+  }
+</style>
+
+<slide>
+  <content>
+    <preview tree>
+      <result>
+        <css-doodle click-to-update>
+          :doodle {
+            @grid: 1x2x9 / 30vmin;
+          }
+          :container {
+            @size: 1px 70%;
+            background: #000;
+            margin: auto;
+          }
+
+          @size: 1px 70%;
+          background: #000;
+
+          position: absolute;
+          bottom: 100%;
+
+          transform-origin: 50% 100%;
+          transform:
+            rotate(@pn(-23deg, 15deg));
+        </css-doodle>
+      </result>
+      <textarea code>
+        div {
+          background: #000;
+          width: 1px;
+          height: 70%;
+          position: absolute;
+          bottom: 100%;
+          transform-origin: 50% 100%;
+        }
+
+        div > div:first-child {
+          tranform: rotate(-23deg);
+        }
+
+        div > div:last-child {
+          tranform: rotate(15deg);
+        }
+      </textarea>
+    </preview>
+  </content>
+</slide>
+
+
+<slide>
+  <content>
+    <preview>
+      <result>
+      <css-doodle click-to-update></css-doodle>
+      </result>
+      <textarea code live>
+        :doodle {
+          @grid: 1x3x6 / 60vmin;
+        }
+
+        @size: 50%;
+        position: absolute;
+        bottom: 0; left: @pn(50%, 0);
+        clip-path: polygon(
+          50% 0, 100% 100%, 0 100%
+        );
+
+        :first-child {
+          top: 0;
+          transform: translateX(-50%);
+        }
+
+        :empty {
+          background: #000;
+        }
+      </textarea>
+    </preview>
+  </content>
+</slide>
+
+<slide>
+  <content style="--bg-color: #000">
+    <picture>
+      <img src="assets/images/fractal.png" />
+    </picture>
+  </content>
+</slide>

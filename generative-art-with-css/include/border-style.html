@@ -1,0 +1,127 @@
+<slide>
+  <content>
+    <p>
+      border-style
+    </p>
+  </content>
+</slide>
+
+<slide>
+  <content data-title="border-style" en>
+    <css-doodle click-to-update auto-update>
+      :doodle {
+        @grid: 1x4 / 90vmin 22.5vmin;
+        transform: translateY(-4vmin);
+        --radius: @p(0, 50%);
+      }
+      margin: 1vmin;
+      border: 10px solid #000;
+      transition: .2s ease;
+      border-radius: var(--radius);
+      border-style: @pn(solid, dashed, dotted, double);
+      :after {
+        content: @lp();
+        position: absolute;
+        font-size: 5vmin;
+        top: calc(100% + 4vmin);
+      }
+    </css-doodle>
+  </content>
+</slide>
+
+<slide>
+  <content data-title="border-style" en>
+    <preview>
+      <result>
+      <css-doodle click-to-update></css-doodle>
+      </result>
+      <textarea code live>
+        :doodle {
+          @grid: 10x1 / 50vmin;
+        }
+
+        border-width: 1vmin;
+        border-color: #000;
+        border-top-style: @p(
+          solid, dashed, dotted, double
+        );
+      </textarea>
+    </preview>
+  </content>
+</slide>
+
+<slide>
+  <content data-title="border-style" en>
+    <preview>
+      <result>
+      <css-doodle click-to-update></css-doodle>
+      </result>
+      <textarea code live>
+        :doodle {
+          @grid: 30x1 / 100vmin;
+          transform:
+            rotate(30deg)
+            scale(1.5);
+        }
+
+        border-width: 1vmin;
+        border-color: #000;
+        border-top-style: @p(
+          solid, dashed, dotted, double
+        );
+      </textarea>
+    </preview>
+  </content>
+</slide>
+
+<slide>
+  <content data-title="border-style" en>
+    <preview>
+      <result>
+      <css-doodle click-to-update></css-doodle>
+      </result>
+      <textarea code live>
+        :doodle {
+          @grid: 15 / 50vmin;
+        }
+
+        --s: 1vmin solid #000;
+
+        @random {
+          border-top: var(--s);
+        }
+
+        @random {
+          border-left: var(--s);
+        }
+      </textarea>
+    </preview>
+  </content>
+</slide>
+
+<slide>
+  <content data-title="border-style" en>
+    <preview long>
+      <result>
+      <css-doodle click-to-update></css-doodle>
+      </result>
+      <textarea code live>
+        :doodle {
+          @grid: 30x1 / 50vmin;
+        }
+
+        @place-cell: center;
+        @size: calc(@i() * 10%);
+        transform: rotate(@r(360deg));
+
+        border-radius: 50%;
+        border-style: dotted;
+        border-width: calc(@i() * 1vmin);
+        border-color: @p(
+          #bff4ed, #280f34,
+          #b30753, #f6c667
+        );
+      </textarea>
+    </preview>
+  </content>
+</slide>

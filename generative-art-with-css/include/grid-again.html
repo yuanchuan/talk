@@ -1,0 +1,133 @@
+<style>
+  & css-doodle {
+    --basic-grid: (
+      :doodle {
+        @grid: 5 / 50vmin;
+      }
+      border: 2px solid #000;
+      margin: -1px;
+    );
+  }
+</style>
+
+<slide>
+  <content data-title="Grid" en>
+    <preview>
+      <result>
+        <css-doodle></css-doodle>
+      </result>
+      <textarea code live>
+        :doodle {
+          @grid: 5 / 50vmin;
+        }
+
+        border: 1px solid #000;
+        margin: -.5px;
+      </textarea>
+    </preview>
+  </content>
+</slide>
+
+
+<slide>
+  <content data-title="Grid" en>
+    <preview>
+      <result>
+        <css-doodle click-to-update>
+          :doodle {
+            @grid: 1x50 / 50vmin;
+            overflow: hidden;
+            grid-auto-flow: dense;
+            grid-auto-rows: 1vmin;
+            grid-template-columns: repeat(auto-fill, 1vmin);
+            border: 1px solid #000;
+          }
+          :container {
+            transform: scale(1.2);
+          }
+
+          margin: -.5px;
+          grid-row-end: span @ri(2, 12);
+          grid-column-end: span @ri(2, 12);
+          border: 1px solid #000;
+        <css-doodle>
+      </result>
+      <textarea code>
+        :doodle {
+          @grid: 1x50 / 50vmin;
+          grid-auto-flow: dense;
+          /* ... */
+        }
+
+        grid-row-end:
+          span @ri(2, 12);
+
+        grid-column-end:
+          span @ri(2, 12);
+      </textarea>
+    </preview>
+  </content>
+</slide>
+
+<slide>
+  <content data-title="Grid" en>
+    <preview>
+      <result>
+        <css-doodle click-to-update>
+          :doodle {
+            @grid: 1x50 / 50vmin;
+            overflow: hidden;
+            grid-auto-rows: 1vmin;
+            grid-template-columns: repeat(auto-fill, 1vmin);
+            border: 1px solid #223141;
+          }
+          :container {
+            transform: scale(1.2);
+          }
+
+          margin: -.5px;
+          grid-row-end: span @ri(2, 12);
+          grid-column-end: span @ri(2, 12);
+          border: 1px solid #000;
+
+         :after {
+            position: absolute;
+            content: '';
+            border: 1px solid #223141;
+            left: -1px;
+            bottom: -1px;
+            @size: @r(10%, 90%);
+            background: @p(
+              transparent,
+              #FF5A59, #E6BBC2, #509DA6
+            );
+          }
+        <css-doodle>
+      </result>
+      <textarea code>
+        /* ... */
+
+        :after {
+          position: absolute;
+          content: '';
+          border: 1px solid #223141;
+          left: -1px;
+          bottom: -1px;
+          @size: @r(10%, 90%);
+          background: @p(
+            transparent,
+            #FF1489, #FF5A59, #509DA6
+          );
+        }
+      </textarea>
+    </preview>
+  </content>
+</slide>
+
+<slide bg="grid">
+  <content>
+    <p>
+
+    </p>
+  </content>
+</slide>

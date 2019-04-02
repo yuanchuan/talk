@@ -1,0 +1,100 @@
+<style>
+  & [as-bg] {
+    opacity: .6;
+  }
+  & content {
+  }
+  & em {
+    position: relative;
+    color: #ff5d88;
+    text-shadow:
+      -.05em -.05em #FFC5AE66,
+      .1em .1em #82f6f388;
+  }
+  & em:after, & em:before {
+    content: '';
+    position: absolute;
+    width: 2.3em;
+    height: 2.3em;
+    left: 50%; top: 50%;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff8;
+    z-index: -1;
+    border: 6px double #ea6488dd;
+    border-style: double dashed dotted double;
+  }
+  & em:before {
+    width: 1.7em;
+    height: 1.7em;
+    border-style: dashed dotted double;
+    border-color: #58ecebd1;
+    background: #fff3;
+  }
+</style>
+
+<slide curr>
+  <content>
+    <p>Generative Art <br/> With <em>CSS</em></p>
+  </content>
+  <css-doodle as-bg auto-update>
+    :doodle {
+      @grid: 14 / 100vmax;
+      --color: #51eaea;
+    }
+    :container {
+      transform: scale(1.4) rotate(45deg);
+    }
+    overflow: hidden;
+    margin: -.5px;
+    border-color: @p(#51eaea, #65799B, #FF9D77, #FB3569);
+    border-width: 1px;
+    border-radius: 50%;
+    border-style: @repeat(4, (
+      @p(solid, dashed, dotted)
+    ));
+
+    :after, :before {
+      content: '';
+      @size: calc(@sqrt(2) * 50%);
+      position: absolute;
+      border-width: inherit;
+      border-color: @p(#51eaea, #65799B, #FF9D77, #FB3569);
+      border-radius: 50%;
+      border-style: @repeat(4, (
+        @p(solid, dashed, dotted)
+      ));
+    }
+    :after {
+      transform: rotate(@r(-180deg, 180deg));
+      z-index: 0;
+      background: conic-gradient(
+        from @r(360deg), #E2EEF1 @r(20%, 70%), transparent 0
+      );
+    }
+    :before {
+      @size: calc(50% - 2px);
+      background: #fff
+        linear-gradient(
+          @p(#51eaea, #E2EEF1, #FF9D77, #FB3569),
+          @lp()
+        )
+        50% 50% / 25% 25%
+        no-repeat;
+      z-index: 1;
+    }
+    @random(.35) {
+      border: none;
+      :after {
+        border: none;
+        background: none;
+      }
+      :before {
+        @size: @r(10%, 20%);
+        border: none;
+        background: @p(#0001, #51eaea, #E2EEF1, #FF9D77, #FB3569);
+        @shape: @p(circle, rhombus, hexagon);
+      }
+    }
+  </css-doodle>
+</slide>

@@ -1,0 +1,76 @@
+<slide>
+  <content>
+    <p>
+      border-image
+    </p>
+  </content>
+</slide>
+
+<style>
+  &[black-bg] {
+    background: #2F1C50;
+  }
+</style>
+<slide black-bg>
+  <content>
+    <picture>
+      <img src="assets/images/border-image.png "/>
+    </picture>
+  </content>
+</slide>
+
+<style>
+  [long] .code-sample {
+    font-size: 2vw;
+  }
+</style>
+<slide black-bg>
+  <content>
+    <preview long>
+      <result>
+        <css-doodle click-to-update></css-doodle>
+      </result>
+      <textarea code live>
+        :doodle {
+          @grid: 50x1 / 50vmin;
+        }
+
+        @place-cell: center;
+        @size: calc(@i() * 2%);
+
+        mix-blend-mode: hard-light;
+        transform:
+          rotate(calc(@i()* 1deg));
+
+        --c: @p(
+          #F5C8E5, #74DCE3,
+          #137EC7, #65D7E1
+        );
+
+        border: 10px solid var(--c);
+        border-image: radial-gradient(
+          var(--c), transparent 60%
+        );
+        border-image-width:
+          calc(@i() / 2);
+      </textarea>
+    </preview>
+  </content>
+</slide>
+
+<slide>
+  <content style="--bg-color: #2F1C50" data-title="border-image" en>
+    <picture>
+      <img src="assets/images/border-image-3.png" />
+    </picture>
+  </content>
+</slide>
+
+<slide>
+  <content style="--bg-color: #2F1C50" data-title="border-image" en>
+    <picture>
+      <img src="assets/images/border-image-2.png" />
+    </picture>
+  </content>
+</slide>
+

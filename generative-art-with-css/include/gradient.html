@@ -1,0 +1,88 @@
+<slide>
+  <content>
+    <p>
+      Gradient
+    </p>
+  </content>
+</slide>
+
+<slide>
+  <content data-title="Gradient" en>
+    <css-doodle>
+      :doodle {
+        @grid: 1x3 / 90vmin 30vmin;
+        transform: translateY(-4vmin);
+      }
+      --linear: linear-gradient(#000, transparent);
+      --radial: radial-gradient(#000, transparent);
+      --conic: conic-gradient(#000, transparent);
+
+      :before {
+        content: '';
+        @size: 100%;
+        transform: scale(.9);
+        background: @pn(
+          var(--linear), var(--radial), var(--conic)
+        );
+      }
+      :after {
+        content: @pn(linear-, radial-, conic-);
+        position: absolute;
+        font-size: 5vmin;
+        top: calc(100% + 4vmin);
+      }
+    </css-doodle>
+  </content>
+</slide>
+
+<style>
+
+& css-doodle {
+  --basic: (
+    :doodle {
+      @size: 50vmin;
+    }
+  );
+}
+</style>
+
+<slide>
+  <content data-title="Gradient" en>
+    <preview>
+      <result>
+        <css-doodle use="var(--basic)"click-to-update></css-doodle>
+      </result>
+      <textarea code live>
+        background: @m(100, (
+          linear-gradient(
+            #000 50%, transparent 0
+          )
+          @r(100%) @r(100%) /
+          @r(20%) 1vmin
+          no-repeat
+        ));
+      </textarea>
+    </preview>
+  </content>
+</slide>
+
+
+<slide>
+  <content data-title="Gradient" en>
+    <preview>
+      <result>
+        <css-doodle use="var(--basic)"click-to-update></css-doodle>
+      </result>
+      <textarea code live>
+        background: @m(100, (
+          radial-gradient(
+            #000 50%, transparent 0
+          )
+          @r(100%) @r(100%) /
+          @r(10%) @lr()
+          no-repeat
+        ));
+      </textarea>
+    </preview>
+  </content>
+</slide>

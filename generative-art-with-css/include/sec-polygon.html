@@ -1,0 +1,39 @@
+<style>
+  & .vertical-wrap {
+    margin-top: -10vmin;
+  }
+  & p {
+    margin-bottom: 5vmin;
+  }
+  & css-doodle {
+    margin: auto;
+    --shapes: (
+      :doodle {
+        @grid: 1x5 / 75vmin 15vmin;
+      }
+      transform: scale(.95);
+      background: #000;
+      transition: .2s ease;
+      @shape: @pn(pentagon, hexagon, heptagon, octagon, bud @p(3,4, 5, 6, 7, 8, 9, 10));
+      @even {
+        :after {
+          content: '';
+          position: absolute;
+          @size: 100%;
+          @shape: @lp();
+          background: #fff;
+          transform: scale(.9);
+        }
+      }
+    );
+  }
+</style>
+
+<slide>
+  <content>
+    <div class="vertical-wrap">
+      <p>多边形</p>
+      <css-doodle use="var(--shapes)" auto-update="2000"></css-doodle>
+    </div>
+  </content>
+</slide>

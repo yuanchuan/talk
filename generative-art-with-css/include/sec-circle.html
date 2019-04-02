@@ -1,0 +1,48 @@
+<style>
+  & .vertical-wrap {
+    margin-top: -10vmin;
+  }
+  & p {
+    margin-bottom: 5vmin;
+  }
+  & css-doodle {
+    --circle: (
+      :doodle {
+        @grid: 1x4 / 60vmin 15vmin;
+      }
+
+      border-radius: 50%;
+      @size: 90%;
+      @nth(1) {
+        border: 5px solid #000;
+      }
+      @nth(2) {
+        background: @m(20, (
+          radial-gradient(#000 50%, transparent 0)
+          calc( @cos(@PI() / 10 * @n()) * 50% + 50% )
+          calc( @sin(@PI() / 10 * @n()) * 50% + 50%) / 2vmin 2vmin
+          no-repeat
+        ));
+        animation: r 25s linear infinite;
+      }
+      @nth(3) {
+        border: 5vmin double #000;
+      }
+      @nth(4) {
+        background: #000;
+      }
+      @keyframes r {
+        to { transform: rotate(360deg) }
+      }
+    );
+  }
+</style>
+
+<slide>
+  <content>
+    <div class="vertical-wrap">
+      <p>圆形</p>
+      <css-doodle use="var(--circle)"></css-doodle>
+    </div>
+  </content>
+</slide>

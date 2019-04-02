@@ -1,0 +1,41 @@
+<style>
+  & .code-sample {
+    font-size: 90%;
+  }
+
+</style>
+
+<slide>
+  <content>
+    <preview long>
+      <result>
+        <css-doodle click-to-update></css-doodle>
+      </result>
+
+      <textarea code live>
+        :doodle {
+          @grid: 20x1 / 60vmin;
+        }
+
+        @place-cell: center;
+        @size: 1000%;
+
+        background: @multi(500, (
+          repeating-radial-gradient(
+            @p(#E63946, #F1FAEE, #A8DADC,
+              #457B9D, #1D3557) @r(25%),
+            transparent
+          )
+          @r(0%, 100%) @r(0%, 100%) /
+          @r(5%, 8%) @lr()
+          no-repeat
+        ));
+
+        mix-blend-mode: overlay;
+        transform: translate(
+          @r(-100%, 100%)
+        );
+      </textarea>
+    </preview>
+ </content>
+</slide>

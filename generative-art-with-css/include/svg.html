@@ -1,0 +1,114 @@
+<slide>
+  <content>
+    <p>
+      SVG filters
+    </p>
+  </content>
+</slide>
+
+
+<style>
+  & [code-block] {
+    background: #272a36;
+    width: 100vw;
+    height: 100vh;
+  }
+  & [code-block]:after {
+    color: rgba(255, 255, 255, .02);
+  }
+  & .code-sample {
+    font-size: 2.5vw;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1.3;
+  }
+</style>
+
+<slide>
+  <content code-block data-title="SVG filters" en>
+    <textarea code="xml">
+      <filter>
+        <feTurbulence
+          type="fractalNoise"
+          baseFrequency=".005"
+          numOctaves="1"
+          seed="100"
+        />
+        <feDisplacementMap
+          in="SourceGraphic"
+          scale="100"
+        />
+      </filter>
+    </textarea>
+  </content>
+</slide>
+
+
+<style>
+  & css-doodle {
+    --color: @pd(#F6F6E9, #3a0088, #930077, #e61c5d, #EFC3E6);
+    --basic: (
+       :doodle {
+        @grid: 1 / 100vmin;
+        position: absolute;
+        overflow:hidden;
+      }
+      :container {
+        @size: 150%;
+        left: 50%; top: 50%;
+        transform: translate(-50%, -50%);
+      }
+      background: conic-gradient(
+        @m(20, var(--color))
+      );
+    );
+  }
+</style>
+
+<slide>
+  <content>
+    <preview>
+      <result>
+        <css-doodle click-to-update use="var(--basic)"></css-doodle>
+      </result>
+      <textarea code live>
+         xfilter: @svg-filter(<svg>
+           <filter>
+             <feTurbulence
+               type="fractalNoise"
+               seed="100"
+               numOctaves="1"
+               baseFrequency=".006"
+             />
+             <feDisplacementMap
+               in="SourceGraphic"
+               scale="100"
+             />
+           </filter>
+          </svg>);
+      </textarea>
+    </preview>
+  </content>
+</slide>
+
+<slide>
+  <ul focus>
+    <li>
+      <content>
+        <picture>
+          <img src="assets/images/svg-gradient-2.png" />
+        </figure>
+      </content>
+    </li>
+    <li>
+      <content>
+        <picture>
+          <img src="assets/images/svg-gradient.png" />
+        </figure>
+      </content>
+    </li>
+  </ul>
+</slide>
+

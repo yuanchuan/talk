@@ -1,0 +1,152 @@
+<style>
+  & css-doodle {
+    --basic-grid: (
+      :doodle {
+        @grid: 5 / 50vmin;
+      }
+      border: 2px solid #000;
+      margin: -1px;
+    );
+  }
+</style>
+
+<slide>
+  <content data-title="Grid" en>
+    <preview>
+      <result>
+        <css-doodle use="var(--basic-grid)"></css-doodle>
+      </result>
+      <textarea code="xml">
+        <div class="grid">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <!-- 20 more -->
+        </div>
+      </textarea>
+    </preview>
+  </content>
+</slide>
+
+
+<slide>
+  <content data-title="Grid" en>
+    <preview>
+      <result>
+        <css-doodle use="var(--basic-grid)"></css-doodle>
+      </result>
+      <textarea code>
+        .grid {
+          --size: 50vmin;
+          width: var(--size);
+          height: var(--size);
+
+          --count: 5;
+          display: grid;
+          grid-template-columns:
+            repeat(var(--count), 1fr);
+          grid-template-rows:
+            repeat(var(--count), 1fr);
+        }
+      </textarea>
+    </preview>
+  </content>
+</slide>
+
+
+<slide>
+  <content data-title="pattern" en>
+    <css-doodle>
+      :doodle {
+        @grid: 1x2 / 80vmin 50vmin;
+      }
+      @size: 100% 10px;
+      background: #000;
+      margin: auto;
+      transform: rotate(@pn(
+        45deg, -45deg
+      ));
+    </css-doodle>
+  </content>
+</slide>
+
+
+<slide>
+  <content data-title="Grid" en>
+    <preview>
+      <result>
+        <css-doodle click-to-update auto-update>
+          :doodle {
+            @grid: 5 / 50vmin;
+          }
+          @size: 5px calc(100% * @sqrt(2) + 5px);
+          transform: rotate(@p(45deg, -45deg));
+          background: #000;
+          margin: auto;
+          transition: @r(500ms) ease;
+        </css-doodle>
+      </result>
+      <textarea code>
+        --deg-a: 45deg;
+        --deg-b: -45deg;
+
+        transform: rotate(
+          <pick-one>
+        );
+      </textarea>
+    </preview>
+  </content>
+</slide>
+
+
+<slide>
+  <content data-title="pattern" en>
+    <css-doodle>
+      :doodle {
+        @grid: 1x4 / 80vmin 20vmin;
+        gap: 1vmin;
+      }
+      background: #000;
+      border-radius: @pn(
+        100% 0 0 0,
+        0 0 0 100%,
+        0 100% 0 0,
+        0 0 100% 0
+      );
+    </css-doodle>
+  </content>
+</slide>
+
+<slide>
+  <content data-title="Grid" en>
+    <preview>
+      <result>
+        <css-doodle click-to-update auto-update>
+          :doodle {
+            @grid: 5 / 50vmin;
+          }
+          background: #000;
+          transition: @r(500ms) ease;
+          border-radius: @p(
+            100% 0 0 0,
+            0 100% 0 0,
+            0 0 100% 0,
+            0 0 0 100%
+          );
+        </css-doodle>
+      </result>
+      <textarea code>
+        --pat-1: 100% 0 0 0;
+        --pat-2: 0 100% 0 0;
+        --pat-3: 0 0 100% 0;
+        --pat-4: 0 0 0 100%;
+
+        border-radius: <pick-one>
+      </textarea>
+    </preview>
+  </content>
+</slide>
+
+

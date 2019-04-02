@@ -1,0 +1,118 @@
+<style>
+  & css-doodle {
+    --line: (
+      :doodle {
+        width: 70%; height: 0;
+        border-top: 10px dashed #000;
+      }
+    );
+  }
+
+  & result:after {
+    content: '虚线';
+    position: absolute;
+    bottom: -7.5vw;
+    font-size: 15vw;
+    font-weight: bold;
+    color: rgba(0, 0, 0, .05);
+  }
+</style>
+
+
+<slide>
+  <content>
+    <preview>
+      <result>
+        <css-doodle use="var(--line)"></css-doodle>
+      </result>
+      <textarea code>
+        ::after {
+          /* ... */
+
+          text-decoration-style:
+            dashed;
+        }
+      </textarea>
+    </preview>
+  </content>
+</slide>
+
+<slide>
+  <content>
+    <preview>
+      <result>
+        <css-doodle use="var(--line)"></css-doodle>
+      </result>
+      <textarea code>
+        ::after {
+          /* ... */
+
+          text-emphasis: '_';
+
+          /* set gap */
+          letter-spacing: 2px;
+        }
+      </textarea>
+    </preview>
+  </content>
+</slide>
+
+<slide>
+  <content>
+    <preview>
+      <result>
+        <css-doodle use="var(--line)">
+          :doodle {
+            border: none;
+            height: 10px;
+            background:
+              linear-gradient(
+                to right, #000 67%, transparent 0
+              )
+              0 / 30px 10px
+              repeat-x;
+          }
+        </css-doodle>
+      </result>
+      <textarea code>
+        background: linear-gradient(
+          to left,
+          #000 70%, transparent 0
+        );
+
+        background-repeat: repeat-x;
+        background-size: 30px 10px;
+      </textarea>
+    </preview>
+  </content>
+</slide>
+
+<slide>
+  <content>
+    <preview>
+      <result>
+        <css-doodle use="var(--line)"></css-doodle>
+      </result>
+      <textarea code>
+        border-top: 10px dashed #000;
+      </textarea>
+    </preview>
+  </content>
+</slide>
+
+<slide>
+  <content>
+    <preview>
+      <result>
+        <div class="dynamic-border-radius" dashed></div>
+      </result>
+      <textarea code>
+        width: 50vmin;
+        height: 50vmin;
+
+        border: 10px dashed #000;
+        border-radius: 50%;
+      </textarea>
+    </preview>
+  </content>
+</slide>

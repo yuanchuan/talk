@@ -1,0 +1,90 @@
+<style>
+  & css-doodle {
+    --line: (
+      :doodle {
+        @size: 70% 1em;
+        background: #000;
+        border-radius: 1em;
+      }
+    );
+  }
+
+  & result:after {
+    content: '圆角';
+    position: absolute;
+    bottom: -7.5vw;
+    font-size: 15vw;
+    font-weight: bold;
+    color: rgba(0, 0, 0, .05);
+  }
+
+  &[oops] {
+    background: #272A36;
+  }
+  &[oops]:after {
+    content: 'Oooooops';
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    bottom: -6vw;
+    font-size: 15vw;
+    font-weight: bold;
+    color: rgba(255, 255, 255, .1);
+  }
+  & .figure-list img {
+    max-height: 95vmin;
+  }
+</style>
+
+<slide>
+  <content>
+    <preview>
+      <result>
+        <css-doodle use="var(--line)"></css-doodle>
+      </result>
+      <textarea code>
+        width: 70%;
+        height: 1em;
+        background-color: #000;
+
+        border-radius: 1em;
+      </textarea>
+    </preview>
+  </content>
+</slide>
+
+<slide oops>
+  <content>
+    <picture>
+      <img src="assets/images/border.png" />
+    </picture>
+  </content>
+</slide>
+
+
+<slide>
+  <content>
+    <preview>
+      <result>
+        <css-doodle>
+          :doodle {
+            @grid: 2x1 / 70% 5em;
+          }
+          height: 1em;
+          margin: auto 0;
+          background:
+            linear-gradient(@pn(#9999, #000), @lp()) 50% / calc(100% - 1em) 1em no-repeat,
+            radial-gradient(#000 70%, transparent 0) 0 50% / 1em 1em no-repeat,
+            radial-gradient(#000 70%, transparent 0) 100% 50% / 1em 1em no-repeat;
+        </css-doodle>
+      </result>
+      <textarea code>
+        background:
+          linear-gradient(/*...*/),
+          radial-gradient(/*...*/),
+          radial-gradient(/*...*/);
+      </textarea>
+    </preview>
+  </content>
+</slide>
+

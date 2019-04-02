@@ -1,0 +1,84 @@
+<style>
+  & css-doodle {
+    --basic: (
+      :doodle {
+        @size: 120vmin;
+        position: absolute;
+      }
+    );
+  }
+</style>
+
+<slide>
+  <content data-title="Gradient" en>
+    <preview>
+      <result>
+        <css-doodle use="var(--basic)" click-to-update></css-doodle>
+      </result>
+      <textarea code live>
+        background: @m(1, (
+          linear-gradient(
+            @r(360deg),
+            @m(2, @p(
+              #bff4ed, #280f34,
+              #b30753, #f6c667
+            ))
+          )
+        ));
+
+        background-blend-mode:
+          difference;
+      </textarea>
+    </preview>
+  </content>
+</slide>
+
+<style>
+  & css-doodle {
+    --diamond: (
+      :doodle {
+        @grid: 1 / 100vmin;
+        position: absolute;
+      }
+    );
+  }
+</style>
+
+<slide>
+  <content data-title="Gradient" en>
+    <preview long>
+      <result>
+        <css-doodle click-to-update use="var(--diamond)"></css-doodle>
+      </result>
+      <textarea code live>
+        background: @multi(100, (
+          repeating-conic-gradient(
+            from @pn(
+              -45deg, 45deg, 60deg,
+              90deg, -90deg
+            ),
+            @multi(50, (
+              magenta, blue,
+              purple, yellow
+            ))
+          )
+          @pn(0%, 100%) 100% /
+          400vmax 400vmax
+          no-repeat
+        ));
+
+        filter: hue-rotate(180deg);
+        background-blend-mode: difference;
+      </textarea>
+    </preview>
+  </content>
+</slide>
+
+
+<slide bg="gradient">
+  <content></content>
+</slide>
+
+<slide bg="polygon">
+  <content></content>
+</slide>
