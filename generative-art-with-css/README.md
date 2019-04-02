@@ -7,7 +7,8 @@
 I built this slide from scratch based on how I wished to write these contents.
 I also learned that sometimes not pursuing perfection would make my life much easier.
 
-This slide only works in Chrome.
+This slide **only** works in Chrome. However, **Chrome 73** has some performance issues.
+Please use **Chrome Canary** or older versions of Chrome.
 
 
 ## Build

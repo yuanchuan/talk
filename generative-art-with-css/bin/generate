@@ -11,7 +11,7 @@ if (!input) {
   process.exit();
 }
 
-const result = build(input, output);
+const result = build(input);
 
 if (output) {
   fs.writeFileSync(output, result);
@@ -67,7 +67,7 @@ function read(name) {
   }
 }
 
-function build(input, output) {
+function build(input) {
   return read(input).split(/\n/)
     .map(line => {
       if (line.includes('<slide src=')) {
