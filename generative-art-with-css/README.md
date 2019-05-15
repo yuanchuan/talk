@@ -2,6 +2,13 @@
 > My slide for https://css.w3ctech.com/5
 
 
+## English Translation of the talk.
+
+https://generative-art-with-css.commons.host
+
+Many thanks to [@hj_chen](https://twitter.com/hj_chen) for the translation.
+
+
 ## Background
 
 I built this slide from scratch based on how I wished to write these contents.
