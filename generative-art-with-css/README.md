@@ -2,7 +2,7 @@
 > My slide for https://css.w3ctech.com/5
 
 
-## English Translation of the talk.
+## English Translation
 
 https://generative-art-with-css.commons.host
 
