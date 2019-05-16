@@ -4,9 +4,7 @@
 
 ## English Translation
 
-https://generative-art-with-css.commons.host
-
-Many thanks to [@hj_chen](https://twitter.com/hj_chen) for the translation.
+[https://generative-art-with-css.commons.host](https://generative-art-with-css.commons.host). Many thanks to [@hj_chen](https://twitter.com/hj_chen).
 
 
 ## Background
