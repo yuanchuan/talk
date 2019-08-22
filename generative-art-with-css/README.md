@@ -2,7 +2,7 @@
 > My slide for https://css.w3ctech.com/5
 
 
-## English transcription
+## English transcript
 
 [https://generative-art-with-css.commons.host](https://generative-art-with-css.commons.host). Many thanks to [@hj_chen](https://twitter.com/hj_chen).
 
